@@ -1,0 +1,587 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>实验七 文件与文件夹操作 | 大狸子</title><meta name="keywords" content="实验报告,Python"><meta name="author" content="大狸子"><meta name="copyright" content="大狸子"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="实验七 文件与文件夹操作"><meta name="application-name" content="实验七 文件与文件夹操作"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="实验七 文件与文件夹操作"><meta property="og:url" content="http://example.com/2024/08/29/%E5%AE%9E%E9%AA%8C%E4%B8%83%20%E6%96%87%E4%BB%B6%E4%B8%8E%E6%96%87%E4%BB%B6%E5%A4%B9%E6%93%8D%E4%BD%9C/index.html"><meta property="og:site_name" content="大狸子"><meta property="og:description" content="实验七 文件与文件夹操作一、实验学时：2学时二、实验目的 掌握：Python中有关文件读写的方法； 掌握：与文件相关的函数与标准库的用法； 掌握：内置函数open()用法，熟练运用with关键字； 掌握：os、os.path、shutil标准库中常用函数的用法。  三、实验内容 从键盘输入一些字符，"><meta property="og:locale" content="zh-CN"><meta property="og:image" content="https://telegraph-image-byi.pages.dev/file/c6b5e84fc1dd42e8f8bbf.png"><meta property="article:author" content="大狸子"><meta property="article:tag"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://telegraph-image-byi.pages.dev/file/c6b5e84fc1dd42e8f8bbf.png"><meta name="description" content="实验七 文件与文件夹操作一、实验学时：2学时二、实验目的 掌握：Python中有关文件读写的方法； 掌握：与文件相关的函数与标准库的用法； 掌握：内置函数open()用法，熟练运用with关键字； 掌握：os、os.path、shutil标准库中常用函数的用法。  三、实验内容 从键盘输入一些字符，"><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="http://example.com/2024/08/29/%E5%AE%9E%E9%AA%8C%E4%B8%83%20%E6%96%87%E4%BB%B6%E4%B8%8E%E6%96%87%E4%BB%B6%E5%A4%B9%E6%93%8D%E4%BD%9C/"><link rel="preconnect" href="//cdn.cbd.int"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: {"enable":true,"title":"与数百名博主无限进步","addFriendPlaceholder":"昵称（请勿包含博客等字样）：\n网站地址（要求博客地址，请勿提交个人主页）：\n头像图片url（请提供尽可能清晰的图片，我会上传到我自己的图床）：\n描述：\n站点截图（可选）：\n"},
+  peoplecanvas: undefined,
+  postHeadAiDescription: {"enable":true,"gptName":"AnZhiYu","mode":"local","switchBtn":false,"btnLink":"https://afdian.net/item/886a79d4db6711eda42a52540025c377","randomNum":3,"basicWordCount":1000,"key":"xxxx","Referer":"https://xx.xx/"},
+  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 不要走！再看看嘛！","backTitle":"♪(^∇^*)欢迎肥来！"},
+  LA51: undefined,
+  greetingBox: {"enable":true,"default":"晚上好👋","list":[{"greeting":"晚安😴","startTime":0,"endTime":5},{"greeting":"早上好鸭👋, 祝你一天好心情！","startTime":6,"endTime":9},{"greeting":"上午好👋, 状态很好，鼓励一下～","startTime":10,"endTime":10},{"greeting":"11点多啦, 在坚持一下就吃饭啦～","startTime":11,"endTime":11},{"greeting":"午安👋, 宝贝","startTime":12,"endTime":14},{"greeting":"🌈充实的一天辛苦啦！","startTime":14,"endTime":18},{"greeting":"19点喽, 奖励一顿丰盛的大餐吧🍔。","startTime":19,"endTime":19},{"greeting":"晚上好👋, 在属于自己的时间好好放松😌~","startTime":20,"endTime":24}]},
+  twikooEnvId: 'https://biglizi-twikoo.hf.space',
+  commentBarrageConfig:undefined,
+  root: '/',
+  preloader: {"source":3},
+  friends_vue_info: undefined,
+  navMusic: true,
+  mainTone: undefined,
+  authorStatus: {"skills":["🤖️ 数码科技爱好者","🔍 分享与热心帮助","🏠 智能家居小能手","🔨 设计开发一条龙","🤝 专修交互与设计","🏃 脚踏实地行动派","🧱 团队小组发动机","💢 壮汉人狠话不多"]},
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: 大狸子","link":"链接: ","source":"来源: 大狸子","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: '大狸子',
+  title: '实验七 文件与文件夹操作',
+  postAI: '',
+  pageFillDescription: '实验七 文件与文件夹操作, 一、实验学时：2学时, 二、实验目的, 三、实验内容, 四、实验结果, 五、实验小结实验七文件与文件夹操作一实验学时学时二实验目的掌握中有关文件读写的方法掌握与文件相关的函数与标准库的用法掌握内置函数用法熟练运用关键字掌握标准库中常用函数的用法三实验内容从键盘输入一些字符逐个把它们写到指定的文件直到输入一个为止示例请输入文件名请输入字符串执行代码后文件中内容为老王的血压有些高医生让家属给老王测血压老王的女儿记录了一段时间的血压测量值在文件中内容示例如下文件内各部分含义如下测量时间左臂高压左臂低压右臂高压右臂低压心率根据题意实现下述功能使用字典和列表类型进行数据分析获取老王的左臂和右臂血压情况的对比表输出到屏幕上请注意每列对齐低压最高值左臂和右臂的血压平均值左臂和右臂的高压差平均值低压差平均值心率的平均值上述显示的五个项目如果左臂有大于的项目高于右臂则输出结论左臂血压偏高如果等于的项目高于右臂则输出结论左臂血压与右臂血压相当如果小于的项目高于右臂则输出结论右臂血压偏高假设当前目录下有一个文件名为的文本文件存放着某班学生的学号第列语文成绩第列和数学成绩第列以空格分割各列数据请编写程序完成下列要求分别求出这个班语文成绩和数学成绩的平均分保留位小数并输出找出这个班两门课都不及格的学生输出这些学生的学号语文成绩和数学成绩找出这个班两门课的平均成绩为优秀分的学生输出这些学生的学号语文成绩数学成绩和平均成绩程序运行效果如图所示编写程序打开任意的文本文件在指定的位置产生一个相同文件的副本即实现文件的拷贝功能在自己电脑任一盘符中新建以命名的文件夹并在该文件夹中新建以为扩展名的文件若干请写一个程序删除掉目录里面不包含子目录所有的扩展名为的文件并将删除掉的文件名称打印出来四实验结果从键盘输入一些字符逐个把它们写到指定的文件直到输入一个为止示例请输入文件名请输入字符串执行代码后文件中内容为题目思路循环将字符串变成一个一个字符进行写入直到遇到则即可程序代码程序名实验功能从键盘输入一些字符逐个把它们写到指定的文件直到输入一个为止示例请输入文件名请输入字符串执行代码后文件中内容为日期版本请输入文件名创建文件文件已创建请输入字符串读到就停止将字符写入文件中关闭文件文件已关闭运行结果截图老王的血压有些高医生让家属给老王测血压老王的女儿记录了一段时间的血压测量值在文件中内容示例如下文件内各部分含义如下测量时间左臂高压左臂低压右臂高压右臂低压心率根据题意实现下述功能使用字典和列表类型进行数据分析获取老王的左臂和右臂血压情况的对比表输出到屏幕上请注意每列对齐低压最高值左臂和右臂的血压平均值左臂和右臂的高压差平均值低压差平均值心率的平均值上述显示的五个项目如果左臂有大于的项目高于右臂则输出结论左臂血压偏高如果等于的项目高于右臂则输出结论左臂血压与右臂血压相当如果小于的项目高于右臂则输出结论右臂血压偏高题目思路创建个列表来存储每次的血压各个数据然后通过逐行读取文件用去分割分别存储到各个列表中之后用列表进行计算即可其中注意平均动脉压的计算公式是收缩压舒张压程序代码程序名实验日期版本读取测量数据计算低压最高值计算血压平均值平均动脉压的计算公式是收缩压舒张压计算高压平均值计算低压平均值计算压差平均值计算心率平均值判断血压结论左臂血压偏高结论左臂血压与右臂血压相当结论右臂血压偏高格式输出一张表项目左臂右臂低压最高值血压平均值高压平均值低压平均值压差平均值心率平均值运行结果截图假设当前目录下有一个文件名为的文本文件存放着某班学生的学号第列语文成绩第列和数学成绩第列以空格分割各列数据请编写程序完成下列要求分别求出这个班语文成绩和数学成绩的平均分保留位小数并输出找出这个班两门课都不及格的学生输出这些学生的学号语文成绩和数学成绩找出这个班两门课的平均成绩为优秀分的学生输出这些学生的学号语文成绩数学成绩和平均成绩程序运行效果如图所示题目思路用个列表来存储数据逐行读取文件然后利用去进行分割分别存储到列表中之后利用列表来计算即可程序代码程序名实验功能假设当前目录下有一个文件名为的文本文件存放着某班学生的学号第列语文成绩第列和数学成绩第列以空格分割各列数据请编写程序完成下列要求分别求出这个班语文成绩和数学成绩的平均分保留位小数并输出找出这个班两门课都不及格的学生输出这些学生的学号语文成绩和数学成绩找出这个班两门课的平均成绩为优秀分的学生输出这些学生的学号语文成绩数学成绩和平均成绩日期版本读取成绩单求语文成绩和数学成绩平均分全班语文成绩的平均分为数学成绩的平均分为求不及格的学生信息两门课都不及格的学生信息如下求优秀学生信息两门课成绩的平均分在分以上的学生信息如下运行结果截图编写程序打开任意的文本文件在指定的位置产生一个相同文件的副本即实现文件的拷贝功能题目思路利用库中的函数即可程序代码程序名实验功能编写程序打开任意的文本文件在指定的位置产生一个相同文件的副本即实现文件的拷贝功能日期版本复制函数文件不存在分离文件名和路径创建路径复制文件已经将复制到目录下请输入你要复制的文件请输入目标路径复制文件测试用实验实验测试用实验新建文件夹运行结果截图在自己电脑任一盘符中新建以命名的文件夹并在该文件夹中新建以为扩展名的文件若干请写一个程序删除掉目录里面不包含子目录所有的扩展名为的文件并将删除掉的文件名称打印出来题目思路去遍历中的文件每次遍历都提取扩展名如果扩展名为则删除这个文件并打印程序代码程序名实验功能在自己电脑任一盘符中新建以命名的文件夹并在该文件夹中新建以为扩展名的文件若干请写一个程序删除掉目录里面不包含子目录所有的扩展名为的文件并将删除掉的文件名称打印出来日期版本获取当前访问文件扩展名判断是否和要删除的文件扩展名相同相同即删除已删除请输入要删除文件的目录请输入要删除的文件的后缀测试运行结果截图五实验小结问题与解决方法不知道前缀的格式化输出如何保留小数位数解决方法通过上网查询得知在前缀中只要变量即可保留位小数在输出血压表格的时候发现不管怎么样中文和数字都无法对齐解决方法在中英文和数字是半角字符在输出和显示的时候只占位字符而中文是全角字符输出和显示的时候占位字符而格式化输出的空格一般只占位所以有中文的时候很难对齐在自己读取的文件中按行读取一直会读取到每行末尾的一个换行符因此不能直接用空格来分割解决方法使用来移除字符串头尾指定的字符默认为空格或换行符或字符序列因此可以将末尾的换行符去掉然后就可以使用正常分割了不知道如何去获取文件扩展名解决方法可以直接将文件名以来进行分割这样可以避免用来进行分割分割出一大堆地址用的话会把地址分为两部分第二部分即为扩展名心得体会的文件操作十分强大给我们提供了好几个对文件进行操作的库使用这些库可以让我们更加方便的去对文件进行操作对于我们平时对电脑的使用也有很大帮助学会这章内容以后便可以自己去编写一些操作文件的程序可以让我们在平时整理文件的时候更加高效快捷越往后学越感觉对于的能力的认识越来越深体会到了本身虽然前面的基础内容学习十分简单快乐但是学到后面的时候发现自己对于书本上的例题感觉越来越难以掌握这就要求我去更加深刻的学习书本上的例题代码从而举一反三解决很多题目',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-08-29 00:00:07',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.3.0"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="https://telegraph-image-byi.pages.dev/file/48a1871ce967286b9d055.jpg"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><div class="back-home-button"><i class="anzhiyufont anzhiyu-icon-grip-vertical"></i><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://blog.anheyu.com/" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://image.anheyu.com/" title="安知鱼图床"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.anheyu.com/favicon.ico" alt="安知鱼图床"/><span class="back-menu-item-text">安知鱼图床</span></a></div></div></div></div><a id="site-name" href="/" accesskey="h"><div class="title">大狸子</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a><div id="he-plugin-simple"></div><script>var WIDGET = {
+  "CONFIG": {
+    "modules": "0124",
+    "background": "2",
+    "tmpColor": "FFFFFF",
+    "tmpSize": "16",
+    "cityColor": "FFFFFF",
+    "citySize": "16",
+    "aqiColor": "E8D87B",
+    "aqiSize": "16",
+    "weatherIconSize": "24",
+    "alertIconSize": "18",
+    "padding": "10px 10px 10px 10px",
+    "shadow": "0",
+    "language": "auto",
+    "borderRadius": "20",
+    "fixed": "true",
+    "vertical": "top",
+    "horizontal": "left",
+    "left": "20",
+    "top": "7.1",
+    "key": "df245676fb434a0691ead1c63341cd94"
+  }
+}
+</script><link rel="stylesheet" href="https://widget.qweather.net/simple/static/css/he-simple.css?v=1.4.0"/><script src="https://widget.qweather.net/simple/static/js/he-simple.js?v=1.4.0"></script></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/link/"><span> 友链</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button only-home" id="travellings_button" title="随机前往一个开往项目网站"><a class="site-page" onclick="anzhiyu.totraveling()" title="随机前往一个开往项目网站" href="javascript:void(0);" rel="external nofollow" data-pjax-state="external"><i class="anzhiyufont anzhiyu-icon-train"></i></a></div><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="https://telegraph-image-byi.pages.dev/file/de2ea8ecc7c0aa119dd18.png" target="_blank"><img class="post-qr-code-img" alt="微信" src="https://telegraph-image-byi.pages.dev/file/de2ea8ecc7c0aa119dd18.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://telegraph-image-byi.pages.dev/file/25f961a132cde06cf014a.png" target="_blank"><img class="post-qr-code-img" alt="支付宝" src="https://telegraph-image-byi.pages.dev/file/25f961a132cde06cf014a.png"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/C/" style="font-size: 1.05rem;">C++<sup>8</sup></a><a href="/tags/Python/" style="font-size: 1.05rem;">Python<sup>11</sup></a><a href="/tags/python/" style="font-size: 1.05rem;">python<sup>1</sup></a><a href="/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/" style="font-size: 1.05rem;">实验报告<sup>19</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/08/"><span class="card-archive-list-date">八月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">20</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/Python/" itemprop="url">Python</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>实验报告</span></a><a class="article-meta__tags" href="/tags/Python/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>Python</span></a></span></div></div><h1 class="post-title" itemprop="name headline">实验七 文件与文件夹操作</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2024-08-28T16:00:07.000Z" title="发表于 2024-08-29 00:00:07">2024-08-29</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2024-08-28T16:00:07.000Z" title="更新于 2024-08-29 00:00:07">2024-08-29</time></span></div><div class="meta-secondline"><span class="post-meta-separator"></span><span class="post-meta-wordcount"><i class="anzhiyufont anzhiyu-icon-file-word post-meta-icon" title="文章字数"></i><span class="post-meta-label" title="文章字数">字数总计:</span><span class="word-count" title="文章字数">4.1k</span><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-clock post-meta-icon" title="阅读时长"></i><span class="post-meta-label" title="阅读时长">阅读时长:</span><span>15分钟</span></span><span class="post-meta-separator"></span><span class="post-meta-pv-cv" id="" data-flag-title="实验七 文件与文件夹操作"><i class="anzhiyufont anzhiyu-icon-fw-eye post-meta-icon"></i><span class="post-meta-label" title="阅读量">阅读量:</span><span id="busuanzi_value_page_pv"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></span><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为安阳"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>安阳</span><span class="post-meta-separator"></span><span class="post-meta-commentcount"><i class="anzhiyufont anzhiyu-icon-comments post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2024/08/29/%E5%AE%9E%E9%AA%8C%E4%B8%83%20%E6%96%87%E4%BB%B6%E4%B8%8E%E6%96%87%E4%BB%B6%E5%A4%B9%E6%93%8D%E4%BD%9C/#post-comment" tabindex="-1"><span id="twikoo-count"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></a></span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="https://telegraph-image-byi.pages.dev/file/c6b5e84fc1dd42e8f8bbf.png"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="http://example.com/2024/08/29/%E5%AE%9E%E9%AA%8C%E4%B8%83%20%E6%96%87%E4%BB%B6%E4%B8%8E%E6%96%87%E4%BB%B6%E5%A4%B9%E6%93%8D%E4%BD%9C/"><header><a class="post-meta-categories" href="/categories/Python/" itemprop="url">Python</a><a href="/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/" tabindex="-1" itemprop="url">实验报告</a><a href="/tags/Python/" tabindex="-1" itemprop="url">Python</a><h1 id="CrawlerTitle" itemprop="name headline">实验七 文件与文件夹操作</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">大狸子</span><time itemprop="dateCreated datePublished" datetime="2024-08-28T16:00:07.000Z" title="发表于 2024-08-29 00:00:07">2024-08-29</time><time itemprop="dateCreated datePublished" datetime="2024-08-28T16:00:07.000Z" title="更新于 2024-08-29 00:00:07">2024-08-29</time></header><h1 id="实验七-文件与文件夹操作"><a href="#实验七-文件与文件夹操作" class="headerlink" title="实验七 文件与文件夹操作"></a>实验七 文件与文件夹操作</h1><h2 id="一、实验学时：2学时"><a href="#一、实验学时：2学时" class="headerlink" title="一、实验学时：2学时"></a>一、实验学时：2学时</h2><h2 id="二、实验目的"><a href="#二、实验目的" class="headerlink" title="二、实验目的"></a>二、实验目的</h2><ol>
+<li>掌握：Python中有关文件读写的方法；</li>
+<li>掌握：与文件相关的函数与标准库的用法；</li>
+<li>掌握：内置函数open()用法，熟练运用with关键字；</li>
+<li>掌握：os、os.path、shutil标准库中常用函数的用法。</li>
+</ol>
+<h2 id="三、实验内容"><a href="#三、实验内容" class="headerlink" title="三、实验内容"></a>三、实验内容</h2><ol>
+<li><p>从键盘输入一些字符，逐个把它们写到指定的文件，直到输入一个@为止。 示例1： 请输入文件名： out.txt 请输入字符串： Python is open.@ 执行代码后，out.txt文件中内容为： Python is open.</p>
+</li>
+<li><p>老王的血压有些高，医生让家属给老王测血压。老王的女儿记录了一段时间的血压测量值，在文件xueyajilu.txt中，内容示例如下：</p>
+</li>
+</ol>
+<ul>
+<li>2020&#x2F;7&#x2F;2 6:00,140,82,136,90,69</li>
+<li>2020&#x2F;7&#x2F;2 15:28,154,88,155,85,63</li>
+<li>2020&#x2F;7&#x2F;3 6:30,131,82,139,74,61</li>
+<li>2020&#x2F;7&#x2F;3 16:49,145,84,139,85,73</li>
+<li>2020&#x2F;7&#x2F;4 5:03,152,87,131,85,63； 文件内各部分含义如下： 测量时间,左臂高压,左臂低压,右臂高压,右臂低压,心率 根据题意，实现下述功能。</li>
+<li>（1）使用字典和列表类型进行数据分析，获取老王的左臂和右臂血压情况的对比表，输出到屏幕上，请注意每列对齐：<br>低压最高值<br>左臂和右臂的血压平均值<br>左臂和右臂的高压差平均值、低压差平均值<br>心率的平均值</li>
+<li>（2）上述显示的五个项目，如果左臂有大于50%的项目高于右臂，则输出“结论：左臂血压偏高”；如果等于50%的项目高于右臂，则输出“结论：左臂血压与右臂血压相当”；如果小于50%的项目高于右臂，则输出“结论：右臂血压偏高”。</li>
+</ul>
+<ol start="3">
+<li>假设当前目录下有一个文件名为class_score.txt的文本文件，存放着某班学生的学号（第1列）、语文成绩（第2列）和数学成绩（第3列），以空格分割各列数据。请编写程序完成下列要求：</li>
+</ol>
+<ul>
+<li>（1）分别求出这个班语文成绩和数学成绩的平均分（保留1位小数）并输出。</li>
+<li>（2）找出这个班两门课都不及格（&lt;60）的学生，输出这些学生的学号、语文成绩和数学成绩。</li>
+<li>（3）找出这个班两门课的平均成绩为优秀（≥90分）的学生，输出这些学生的学号、语文成绩、数学成绩和平均成绩。 程序运行效果如图所示。<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://dn-simplecloud.shiyanlou.com/courses/uid1760168-20220522-1653210287963" alt="图片描述"></li>
+</ul>
+<ol start="4">
+<li><p>编写程序，打开任意的文本文件，在指定的位置产生一个相同文件的副本，即实现文件的拷贝功能。</p>
+</li>
+<li><p>在自己电脑任一盘符中新建以OS_Test命名的文件夹，并在该文件夹中新建以.doc .bmp .txt .png .jpeg .xlsx为扩展名的文件若干，请写一个程序，删除掉OS_Test目录里面（不包含子目录）所有的扩展名为.txt的文件，并将删除掉的文件名称打印出来。</p>
+</li>
+</ol>
+<h2 id="四、实验结果"><a href="#四、实验结果" class="headerlink" title="四、实验结果"></a>四、实验结果</h2><p>1.从键盘输入一些字符，逐个把它们写到指定的文件，直到输入一个@为止。 示例1： 请输入文件名： out.txt 请输入字符串： Python is open.@ 执行代码后，out.txt文件中内容为： Python is open.<br>题目思路：for循环将字符串变成一个一个字符进行写入，直到遇到@则break即可<br>程序代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&quot;&quot;&quot;</span><br><span class="line">程序名：实验7.1.py</span><br><span class="line">功能：从键盘输入一些字符，逐个把它们写到指定的文件，直到输入一个@为止。</span><br><span class="line">示例1： 请输入文件名： out.txt</span><br><span class="line">请输入字符串： Python is open.@</span><br><span class="line">执行代码后，out.txt文件中内容为： Python is open.</span><br><span class="line">日期：2022.5.21</span><br><span class="line">版本：1.0</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">filename = input(&quot;请输入文件名：&quot;)</span><br><span class="line">fp = open(filename, &#x27;w&#x27;)  # 创建文件</span><br><span class="line">print(&quot;文件已创建&quot;)</span><br><span class="line">string1 = input(&quot;请输入字符串：&quot;)</span><br><span class="line">for s in string1:</span><br><span class="line">    if s == &#x27;@&#x27;:  # 读到@就停止</span><br><span class="line">        break</span><br><span class="line">    fp.write(s)  # 将字符写入文件中</span><br><span class="line"></span><br><span class="line">fp.close()  # 关闭文件</span><br><span class="line">print(&quot;文件已关闭&quot;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>运行结果截图:<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://dn-simplecloud.shiyanlou.com/courses/uid1760168-20220522-1653226760106" alt="图片描述"><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://dn-simplecloud.shiyanlou.com/courses/uid1760168-20220522-1653226794990" alt="图片描述"><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://dn-simplecloud.shiyanlou.com/courses/uid1760168-20220522-1653226801968" alt="图片描述"></p>
+<p>2.老王的血压有些高，医生让家属给老王测血压。老王的女儿记录了一段时间的血压测量值，在文件xueyajilu.txt中，内容示例如下：</p>
+<ul>
+<li>2020&#x2F;7&#x2F;2 6:00,140,82,136,90,69</li>
+<li>2020&#x2F;7&#x2F;2 15:28,154,88,155,85,63</li>
+<li>2020&#x2F;7&#x2F;3 6:30,131,82,139,74,61</li>
+<li>2020&#x2F;7&#x2F;3 16:49,145,84,139,85,73</li>
+<li>2020&#x2F;7&#x2F;4 5:03,152,87,131,85,63； 文件内各部分含义如下： 测量时间,左臂高压,左臂低压,右臂高压,右臂低压,心率 根据题意，实现下述功能。</li>
+<li>（1）使用字典和列表类型进行数据分析，获取老王的左臂和右臂血压情况的对比表，输出到屏幕上，请注意每列对齐：<br>低压最高值<br>左臂和右臂的血压平均值<br>左臂和右臂的高压差平均值、低压差平均值<br>心率的平均值</li>
+<li>（2）上述显示的五个项目，如果左臂有大于50%的项目高于右臂，则输出“结论：左臂血压偏高”；如果等于50%的项目高于右臂，则输出“结论：左臂血压与右臂血压相当”；如果小于50%的项目高于右臂，则输出“结论：右臂血压偏高”。</li>
+</ul>
+<p>题目思路：创建6个列表来存储每次的血压各个数据，然后通过逐行读取文件，用split去分割分别存储到各个列表中，之后用列表进行计算即可。其中注意平均动脉压的计算公式是[收缩压+(舒张压*2)]&#x2F;3<br>程序代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line">&quot;&quot;&quot;</span><br><span class="line">程序名：实验7.2.py</span><br><span class="line">日期：2022.5.21</span><br><span class="line">版本：1.0</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"># 读取测量数据</span><br><span class="line">with open(&#x27;xueyajilu.txt&#x27;) as fp:</span><br><span class="line">    time, leftHigh, leftLow, rightHigh, rightLow, heart = [], [], [], [], [], []</span><br><span class="line">    i = 0</span><br><span class="line">    for line in fp:</span><br><span class="line">        a = line.strip().split(&#x27;,&#x27;)</span><br><span class="line">        time.append(a[0])</span><br><span class="line">        leftHigh.append(int(a[1]))</span><br><span class="line">        leftLow.append(int(a[2]))</span><br><span class="line">        rightHigh.append(int(a[3]))</span><br><span class="line">        rightLow.append(int(a[4]))</span><br><span class="line">        heart.append(int(a[5]))</span><br><span class="line">        i += 1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 计算低压最高值</span><br><span class="line">def max_lowPress(leftLow1, rightLow1):</span><br><span class="line">    return [max(leftLow1), max(rightLow1)]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 计算血压平均值</span><br><span class="line">def average_press(leftHigh1, leftLow1, rightHigh1, rightLow1):</span><br><span class="line">    # 平均动脉压的计算公式是[收缩压+(舒张压*2)]/3</span><br><span class="line">    average1 = (sum(leftHigh1) + sum(leftLow1) * 2) / (len(leftLow1) * 2 + len(leftHigh1))</span><br><span class="line">    average2 = (sum(rightHigh1) + sum(rightLow1) * 2) / (len(rightLow1) * 2 + len(rightHigh1))</span><br><span class="line">    return [average1, average2]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 计算高压平均值</span><br><span class="line">def average_highPress(leftHigh1, rightHigh1):</span><br><span class="line">    average1 = sum(leftHigh1) / len(leftHigh1)</span><br><span class="line">    average2 = sum(rightHigh1) / len(rightHigh1)</span><br><span class="line">    return [average1, average2]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 计算低压平均值</span><br><span class="line">def average_lowPress(leftLow1, rightLow1):</span><br><span class="line">    average1 = sum(leftLow1) / len(leftLow1)</span><br><span class="line">    average2 = sum(rightLow1) / len(rightLow1)</span><br><span class="line">    return [average1, average2]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 计算压差平均值</span><br><span class="line">def average_differPress(leftHigh1, leftLow1, rightHigh1, rightLow1):</span><br><span class="line">    average1 = (sum(leftHigh1) - sum(leftLow1)) / len(leftLow1)</span><br><span class="line">    average2 = (sum(rightHigh1) - sum(rightLow1)) / len(rightLow1)</span><br><span class="line">    return [average1, average2]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 计算心率平均值</span><br><span class="line">def average_heartRate(heart1):</span><br><span class="line">    average = sum(heart1) / len(heart1)</span><br><span class="line">    return average</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 判断血压</span><br><span class="line">def judge_press(leftHigh, leftLow, rightHigh, rightLow):</span><br><span class="line">    i = 0</span><br><span class="line">    if max_lowPress(leftLow, rightLow)[0] &gt; max_lowPress(leftLow, rightLow)[1]:</span><br><span class="line">        i += 1</span><br><span class="line">    if average_press(leftHigh, leftLow, rightHigh, rightLow)[0] &gt; \</span><br><span class="line">            average_press(leftHigh, leftLow, rightHigh, rightLow)[1]:</span><br><span class="line">        i += 1</span><br><span class="line">    if average_highPress(leftHigh, rightHigh)[0] &gt; average_highPress(leftHigh, rightHigh)[1]:</span><br><span class="line">        i += 1</span><br><span class="line">    if average_lowPress(leftLow, rightLow)[0] &gt; average_lowPress(leftLow, rightLow)[1]:</span><br><span class="line">        i += 1</span><br><span class="line">    if average_differPress(leftHigh, leftLow, rightHigh, rightLow)[0] &gt; \</span><br><span class="line">            average_differPress(leftHigh, leftLow, rightHigh, rightLow)[1]:</span><br><span class="line">        i += 1</span><br><span class="line">    if i / 5 &gt; 0.5:</span><br><span class="line">        return &quot;结论：左臂血压偏高&quot;</span><br><span class="line">    elif i / 5 == 0.5:</span><br><span class="line">        return &quot;结论：左臂血压与右臂血压相当&quot;</span><br><span class="line">    else:</span><br><span class="line">        return &quot;结论：右臂血压偏高&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 格式输出一张表</span><br><span class="line">def print_table(leftHigh1, leftLow1, rightHigh1, rightLow1, heart1):</span><br><span class="line">    print(f&quot;&#123;&#x27;项目&#x27;:&lt;10&#125;&#123;&#x27;左臂&#x27;&#125;&#123;&#x27;右臂&#x27;.center(10, &#x27;　&#x27;)&#125;&quot;)</span><br><span class="line">    print(</span><br><span class="line">        f&quot;&#123;&#x27;低压最高值&#x27;:&lt;8&#125;&#123;max_lowPress(leftLow1, rightLow1)[0]:.1f&#125;&#123;&#x27;&#x27;:&lt;6&#125;&#123;max_lowPress(leftLow1, rightLow1)[1]:.1f&#125;&quot;)</span><br><span class="line">    print(</span><br><span class="line">        f&quot;&#123;&#x27;血压平均值&#x27;:&lt;8&#125;&#123;average_press(leftHigh1, leftLow1, rightHigh1, rightLow1)[0]:.1f&#125;&#123;&#x27;&#x27;:&lt;5&#125;&#123;average_press(leftHigh1, leftLow1, rightHigh1, rightLow1)[1]:.1f&#125;&quot;)</span><br><span class="line">    print(</span><br><span class="line">        f&quot;&#123;&#x27;高压平均值&#x27;:&lt;8&#125;&#123;average_highPress(leftHigh1, rightHigh1)[0]:.1f&#125;&#123;&#x27;&#x27;:&lt;5&#125;&#123;average_highPress(leftHigh1, rightHigh1)[1]:.1f&#125;&quot;)</span><br><span class="line">    print(</span><br><span class="line">        f&quot;&#123;&#x27;低压平均值&#x27;:&lt;8&#125;&#123;average_lowPress(leftLow1, rightLow1)[0]:.1f&#125;&#123;&#x27;&#x27;:&lt;6&#125;&#123;average_lowPress(leftLow1, rightLow1)[1]:.1f&#125;&quot;)</span><br><span class="line">    print(</span><br><span class="line">        f&quot;&#123;&#x27;压差平均值&#x27;:&lt;8&#125;&#123;average_differPress(leftHigh1, leftLow1, rightHigh1, rightLow1)[0]:.1f&#125;&#123;&#x27;&#x27;:&lt;6&#125;&#123;average_differPress(leftHigh1, leftLow1, rightHigh1, rightLow1)[1]:.1f&#125;&quot;)</span><br><span class="line">    print(judge_press(leftHigh1, leftLow1, rightHigh1, rightLow1))</span><br><span class="line">    print(f&quot;&#123;&#x27;心率平均值&#x27;:&lt;8&#125;&#123;average_heartRate(heart1):.1f&#125;&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print_table(leftHigh, leftLow, rightHigh, rightLow, heart)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>运行结果截图：<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://dn-simplecloud.shiyanlou.com/courses/uid1760168-20220522-1653227000752" alt="图片描述"></p>
+<p>3.假设当前目录下有一个文件名为class_score.txt的文本文件，存放着某班学生的学号（第1列）、语文成绩（第2列）和数学成绩（第3列），以空格分割各列数据。请编写程序完成下列要求：</p>
+<ul>
+<li>（1）分别求出这个班语文成绩和数学成绩的平均分（保留1位小数）并输出。</li>
+<li>（2）找出这个班两门课都不及格（&lt;60）的学生，输出这些学生的学号、语文成绩和数学成绩。</li>
+<li>（3）找出这个班两门课的平均成绩为优秀（≥90分）的学生，输出这些学生的学号、语文成绩、数学成绩和平均成绩。 程序运行效果如图所示。</li>
+</ul>
+<p>题目思路：用3个列表来存储数据，逐行读取文件，然后利用split去进行分割分别存储到列表中，之后利用列表来计算即可。          </p>
+<p>程序代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">&quot;&quot;&quot;</span><br><span class="line">程序名：实验7.3.py</span><br><span class="line">功能：假设当前目录下有一个文件名为class_score.txt的文本文件，</span><br><span class="line">存放着某班学生的学号（第1列）、语文成绩（第2列）和数学成绩（第3列），以空格分割各列数据。</span><br><span class="line">请编写程序完成下列要求：</span><br><span class="line">（1）分别求出这个班语文成绩和数学成绩的平均分（保留1位小数）并输出。</span><br><span class="line">（2）找出这个班两门课都不及格（&lt;60）的学生，输出这些学生的学号、语文成绩和数学成绩。</span><br><span class="line">（3）找出这个班两门课的平均成绩为优秀（≥90分）的学生，输出这些学生的学号、语文成绩、数学成绩和平均成绩。</span><br><span class="line">日期：2022.5.21</span><br><span class="line">版本：1.0</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"># 读取成绩单</span><br><span class="line">with open(&#x27;class_score.txt&#x27;) as fp:</span><br><span class="line">    number, chinese, math = [], [], []</span><br><span class="line">    i = 0</span><br><span class="line">    for line in fp:</span><br><span class="line">        a = line.strip().split(&#x27; &#x27;)</span><br><span class="line">        number.append(a[0])</span><br><span class="line">        chinese.append(int(a[1]))</span><br><span class="line">        math.append(int(a[2]))</span><br><span class="line">        i += 1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 求语文成绩和数学成绩平均分</span><br><span class="line">def average(chinese1, math1):</span><br><span class="line">    average1 = sum(chinese1) / len(chinese1)</span><br><span class="line">    average2 = sum(math1) / len(math1)</span><br><span class="line">    print(f&quot;全班语文成绩的平均分为：&#123;average1:.1f&#125;，数学成绩的平均分为：&#123;average2:.1f&#125;&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 求不及格的学生信息</span><br><span class="line">def fail(number1, chinese1, math1):</span><br><span class="line">    print(&quot;两门课都不及格的学生信息如下：&quot;)</span><br><span class="line">    for i in range(len(number1)):</span><br><span class="line">        if chinese1[i] &lt; 60 and math1[i] &lt; 60:</span><br><span class="line">            print(number1[i], chinese1[i], end=&#x27; &#x27;)</span><br><span class="line">            print(math1[i])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 求优秀学生信息</span><br><span class="line">def perfect(number1, chinese1, math1):</span><br><span class="line">    print(&quot;两门课成绩的平均分在90分以上的学生信息如下：&quot;)</span><br><span class="line">    for i in range(len(number1)):</span><br><span class="line">        if (chinese1[i] + math1[i]) / 2 &gt;= 90:</span><br><span class="line">            print(number1[i], chinese1[i], math1[i], end=&#x27; &#x27;)</span><br><span class="line">            print(f&quot;&#123;(chinese1[i] + math1[i]) / 2:.1f&#125;&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">average(chinese, math)</span><br><span class="line">fail(number, chinese, math)</span><br><span class="line">perfect(number, chinese, math)</span><br></pre></td></tr></table></figure>
+
+<p>运行结果截图：<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://dn-simplecloud.shiyanlou.com/courses/uid1760168-20220522-1653227171013" alt="图片描述"><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://dn-simplecloud.shiyanlou.com/courses/uid1760168-20220522-1653227181514" alt="图片描述"></p>
+<p>4.编写程序，打开任意的文本文件，在指定的位置产生一个相同文件的副本，即实现文件的拷贝功能。<br>题目思路：利用shuffle库中的copy函数即可。<br>程序代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&quot;&quot;&quot;</span><br><span class="line">程序名：实验7.4.py</span><br><span class="line">功能：编写程序，打开任意的文本文件，在指定的位置产生一个相同文件的副本，即实现文件的拷贝功能。</span><br><span class="line">日期：2022.5.21</span><br><span class="line">版本：1.0</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">import os</span><br><span class="line">import shutil</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def copyFile(Initpath, Newpath):  # 复制函数</span><br><span class="line">    if not os.path.isfile(Initpath):</span><br><span class="line">        print(&quot;文件不存在&quot;)</span><br><span class="line">    else:</span><br><span class="line">        path, name = os.path.split(Initpath)  # 分离文件名和路径</span><br><span class="line">        if not os.path.exists(Newpath):</span><br><span class="line">            os.makedirs(Newpath)  # 创建路径</span><br><span class="line">        shutil.copy(Initpath, Newpath + name)  # 复制文件</span><br><span class="line">        print(f&quot;已经将&#123;name&#125;复制到&#123;Newpath&#125;目录下&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Initpath1 = input(&quot;请输入你要复制的文件:&quot;)</span><br><span class="line">Newpath1 = input(&quot;请输入目标路径:&quot;)</span><br><span class="line">copyFile(Initpath1, Newpath1)  # 复制文件</span><br><span class="line"># 测试用:Initpath =&#x27;C:\Users\Lenovo\Desktop\python实验\实验7\class_score.txt&#x27;</span><br><span class="line"># 测试用:Newpath = &#x27;C:\Users\Lenovo\Desktop\python实验\新建文件夹\&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>运行结果截图：<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://dn-simplecloud.shiyanlou.com/courses/uid1760168-20220522-1653227387866" alt="图片描述"><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://dn-simplecloud.shiyanlou.com/courses/uid1760168-20220522-1653227432456" alt="图片描述"><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://dn-simplecloud.shiyanlou.com/courses/uid1760168-20220522-1653227444747" alt="图片描述"></p>
+<p>5.在自己电脑任一盘符中新建以OS_Test命名的文件夹，并在该文件夹中新建以.doc .bmp .txt .png .jpeg .xlsx为扩展名的文件若干，请写一个程序，删除掉OS_Test目录里面（不包含子目录）所有的扩展名为.txt的文件，并将删除掉的文件名称打印出来。<br>题目思路：去遍历OS_Test中的文件，每次遍历都提取扩展名，如果扩展名为txt，则删除这个文件并打印。<br>程序代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&quot;&quot;&quot;</span><br><span class="line">程序名：实验7.5.py</span><br><span class="line">功能：在自己电脑任一盘符中新建以OS_Test命名的文件夹，并在该文件夹中新建以.doc .bmp .txt .png .jpeg .xlsx为扩展名的文件若干</span><br><span class="line">请写一个程序，删除掉OS_Test目录里面（不包含子目录）所有的扩展名为.txt的文件，并将删除掉的文件名称打印出来。</span><br><span class="line">日期：2022.5.21</span><br><span class="line">版本：1.0</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">import os</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def delete_file(filepath, extenName):</span><br><span class="line">    files = os.listdir(filepath)</span><br><span class="line">    for file in files:</span><br><span class="line">        if &#x27;.&#x27; in file:</span><br><span class="line">            extenName2 = file.split(&#x27;.&#x27;)[1]  # 获取当前访问文件扩展名</span><br><span class="line">            if extenName2 == extenName:  # 判断是否和要删除的文件扩展名相同</span><br><span class="line">                os.remove(os.path.join(filepath, file))  # 相同即删除</span><br><span class="line">                print(file + &quot;已删除&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">filepath1 = input(&quot;请输入要删除文件的目录:&quot;)</span><br><span class="line">extenName1 = input(&quot;请输入要删除的文件的后缀:&quot;)</span><br><span class="line">delete_file(filepath1, extenName1)</span><br><span class="line"># 测试 filepath1 = &#x27;D:\OS_Test&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>运行结果截图：<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://dn-simplecloud.shiyanlou.com/courses/uid1760168-20220522-1653227619027" alt="图片描述"><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://dn-simplecloud.shiyanlou.com/courses/uid1760168-20220522-1653227639608" alt="图片描述"><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://dn-simplecloud.shiyanlou.com/courses/uid1760168-20220522-1653227645670" alt="图片描述"></p>
+<h2 id="五、实验小结"><a href="#五、实验小结" class="headerlink" title="五、实验小结"></a>五、实验小结</h2><p><strong>问题与解决方法：</strong></p>
+<ol>
+<li>不知道f前缀的格式化输出如何保留小数位数。<br>解决方法：通过上网查询得知，在f前缀中只要{变量:.xf}即可保留x位小数。</li>
+<li>在输出血压表格的时候，发现不管怎么样，中文和数字都无法对齐。<br>解决方法：在python中，英文和数字是半角字符，在输出和显示的时候只占1位字符，而中文是全角字符，输出和显示的时候占2位字符。而格式化输出的空格一般只占1位，所以有中文的时候很难对齐。</li>
+<li>在自己读取的文件中，按行读取一直会读取到每行末尾的一个换行符，因此不能直接用空格来分割。<br>解决方法：使用strip()来移除字符串头尾指定的字符(默认为空格或换行符)或字符序列，因此可以将末尾的换行符去掉然后就可以使用split正常分割了。             </li>
+<li>不知道如何去获取文件扩展名<br>解决方法：可以直接将文件名以“.”来进行分割，这样可以避免用&#x2F;来进行分割，分割出一大堆地址，用“.”的话，会把地址分为两部分，第二部分即为扩展名。</li>
+</ol>
+<p><strong>心得体会：</strong>       </p>
+<ol>
+<li>python的文件操作十分强大，python给我们提供了好几个对文件进行操作的库，使用这些库可以让我们更加方便的去对文件进行操作。对于我们平时对电脑的使用也有很大帮助，学会这章内容以后，便可以自己去编写一些操作文件的程序，可以让我们在平时整理文件的时候更加高效快捷。        </li>
+<li>越往后学越感觉对于python的能力的认识越来越深，体会到了python本身虽然前面的基础内容学习十分简单快乐，但是学到后面的时候，发现自己对于书本上的例题感觉越来越难以掌握，这就要求我去更加深刻的学习书本上的例题代码，从而举一反三解决很多题目。</li>
+</ol>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://telegraph-image-byi.pages.dev/file/48a1871ce967286b9d055.jpg" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://telegraph-image-byi.pages.dev/file/48a1871ce967286b9d055.jpg" title="头像" alt="头像"></a><div class="post-copyright__author_name">大狸子</div><div class="post-copyright__author_desc">待我强大，吃遍天下</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="http://example.com/2024/08/29/%E5%AE%9E%E9%AA%8C%E4%B8%83%20%E6%96%87%E4%BB%B6%E4%B8%8E%E6%96%87%E4%BB%B6%E5%A4%B9%E6%93%8D%E4%BD%9C/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('http://example.com/2024/08/29/%E5%AE%9E%E9%AA%8C%E4%B8%83%20%E6%96%87%E4%BB%B6%E4%B8%8E%E6%96%87%E4%BB%B6%E5%A4%B9%E6%93%8D%E4%BD%9C/')">实验七 文件与文件夹操作</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"><div class="post-reward" onclick="anzhiyu.addRewardMask()"><div class="reward-button button--animated" title="赞赏作者"><i class="anzhiyufont anzhiyu-icon-hand-heart-fill"></i>打赏作者</div><div class="reward-main"><div class="reward-all"><span class="reward-title">感谢你赐予我前进的力量</span><ul class="reward-group"><li class="reward-item"><a href="https://telegraph-image-byi.pages.dev/file/de2ea8ecc7c0aa119dd18.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://telegraph-image-byi.pages.dev/file/de2ea8ecc7c0aa119dd18.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://telegraph-image-byi.pages.dev/file/25f961a132cde06cf014a.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://telegraph-image-byi.pages.dev/file/25f961a132cde06cf014a.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul><a class="reward-main-btn" href="/about/#about-reward" target="_blank"><div class="reward-text">赞赏者名单</div><div class="reward-dec">因为你们的支持让我意识到写文章的价值🙏</div></a></div></div></div><div id="quit-box" onclick="anzhiyu.removeRewardMask()" style="display: none"></div></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="http://example.com/2024/08/29/%E5%AE%9E%E9%AA%8C%E4%B8%83%20%E6%96%87%E4%BB%B6%E4%B8%8E%E6%96%87%E4%BB%B6%E5%A4%B9%E6%93%8D%E4%BD%9C/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=实验七 文件与文件夹操作&amp;url=http://example.com/2024/08/29/%E5%AE%9E%E9%AA%8C%E4%B8%83%20%E6%96%87%E4%BB%B6%E4%B8%8E%E6%96%87%E4%BB%B6%E5%A4%B9%E6%93%8D%E4%BD%9C/&amp;pic=https://telegraph-image-byi.pages.dev/file/c6b5e84fc1dd42e8f8bbf.png" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">大狸子</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>实验报告<span class="tagsPageCount">19</span></a><a class="post-meta__box__tags" href="/tags/Python/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>Python<span class="tagsPageCount">11</span></a></div></div></div><div class="post_share"><div class="social-share" data-image="https://telegraph-image-byi.pages.dev/file/c6b5e84fc1dd42e8f8bbf.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/08/29/%E5%AE%9E%E9%AA%8C%E5%85%AD%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%8E%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://telegraph-image-byi.pages.dev/file/c6b5e84fc1dd42e8f8bbf.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">实验六 字符串与正则表达式</div></div></a></div><div class="next-post pull-right"><a href="/2024/08/29/%E5%AE%9E%E9%AA%8C%E5%85%AB%20%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://telegraph-image-byi.pages.dev/file/c6b5e84fc1dd42e8f8bbf.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">实验八 异常处理</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="anzhiyufont anzhiyu-icon-thumbs-up fa-fw" style="font-size: 1.5rem; margin-right: 4px"></i><span>喜欢这篇文章的人也看了</span></div><div class="relatedPosts-list"><div><a href="/2024/08/29/%E5%AE%9E%E9%AA%8C%E4%B8%80%20%E7%AE%80%E5%8D%95Python%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" title="实验一 简单Python程序设计"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://telegraph-image-byi.pages.dev/file/c6b5e84fc1dd42e8f8bbf.png" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2024-08-29</div><div class="title">实验一 简单Python程序设计</div></div></a></div><div><a href="/2024/08/29/%E5%AE%9E%E9%AA%8C%E4%B8%89%20%E9%80%89%E6%8B%A9%E4%B8%8E%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84/" title="实验三 选择与循环结构"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://telegraph-image-byi.pages.dev/file/c6b5e84fc1dd42e8f8bbf.png" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2024-08-29</div><div class="title">实验三 选择与循环结构</div></div></a></div><div><a href="/2024/08/29/%E5%AE%9E%E9%AA%8C%E4%B9%9D%20GUI%E5%BC%80%E5%8F%91/" title="实验九 GUI开发"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://telegraph-image-byi.pages.dev/file/c6b5e84fc1dd42e8f8bbf.png" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2024-08-29</div><div class="title">实验九 GUI开发</div></div></a></div><div><a href="/2024/08/29/%E5%AE%9E%E9%AA%8C%E4%BA%8C%20Python%E5%BA%8F%E5%88%97%E7%BB%93%E6%9E%84/" title="实验二 Python序列结构"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://telegraph-image-byi.pages.dev/file/c6b5e84fc1dd42e8f8bbf.png" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2024-08-29</div><div class="title">实验二 Python序列结构</div></div></a></div><div><a href="/2024/08/29/%E5%AE%9E%E9%AA%8C%E5%85%AB%20%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" title="实验八 异常处理"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://telegraph-image-byi.pages.dev/file/c6b5e84fc1dd42e8f8bbf.png" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2024-08-29</div><div class="title">实验八 异常处理</div></div></a></div><div><a href="/2024/08/29/%E5%AE%9E%E9%AA%8C%E4%BA%94%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" title="实验五 面向对象程序设计"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://telegraph-image-byi.pages.dev/file/c6b5e84fc1dd42e8f8bbf.png" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2024-08-29</div><div class="title">实验五 面向对象程序设计</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="anzhiyufont anzhiyu-icon-comments"></i><span> 评论</span></div><div class="comment-randomInfo"><a onclick="anzhiyu.addRandomCommentInfo()" href="javascript:void(0)">匿名评论</a><a href="/privacy" style="margin-left: 4px">隐私政策</a></div><div class="comment-tips" id="comment-tips"><span>✅ 你无需删除空行，直接评论以获取最佳展示效果</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div><div class="comment-barrage"></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info__sayhi" id="author-info__sayhi" onclick="anzhiyu.changeSayHelloText()"></div><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://telegraph-image-byi.pages.dev/file/48a1871ce967286b9d055.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-status"><img class="g-status" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2023/08/24/64e6ce9c507bb.png" alt="status"/></div></div><div class="author-info__description"><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">这有关于<b style="color:#fff">产品、设计、开发</b>相关的问题和看法，还有<b style="color:#fff">文章翻译</b>和<b style="color:#fff">分享</b>。</div><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">相信你可以在这里找到对你有用的<b style="color:#fff">知识</b>和<b style="color:#fff">教程</b>。</div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/"><h1 class="author-info__name">大狸子</h1><div class="author-info__desc">待我强大，吃遍天下</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/biglizi123" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="social-icon faa-parent animated-hover" href="https://blog.csdn.net/qq_26967721?spm=1000.2115.3001.5343" target="_blank" title="csdn"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-csdn2"></use></svg></a></div></div></div></div><div class="card-widget anzhiyu-right-widget" id="card-wechat" onclick="null"><div id="flip-wrapper"><div id="flip-content"><div class="face" style="background: url(https://bu.dusays.com/2023/01/13/63c02edf44033.png) center center / 100% no-repeat"></div><div class="back face" style="background: url(https://bu.dusays.com/2023/05/13/645fa415e8694.png) center center / 100% no-repeat"></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%B8%83-%E6%96%87%E4%BB%B6%E4%B8%8E%E6%96%87%E4%BB%B6%E5%A4%B9%E6%93%8D%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">实验七 文件与文件夹操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%AE%9E%E9%AA%8C%E5%AD%A6%E6%97%B6%EF%BC%9A2%E5%AD%A6%E6%97%B6"><span class="toc-number">1.1.</span> <span class="toc-text">一、实验学时：2学时</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84"><span class="toc-number">1.2.</span> <span class="toc-text">二、实验目的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9"><span class="toc-number">1.3.</span> <span class="toc-text">三、实验内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="toc-number">1.4.</span> <span class="toc-text">四、实验结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%AE%9E%E9%AA%8C%E5%B0%8F%E7%BB%93"><span class="toc-number">1.5.</span> <span class="toc-text">五、实验小结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/08/29/%E5%AE%9E%E9%AA%8C%E5%8D%81%E4%B8%80%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B8%8E%E5%8F%AF%E8%A7%86%E5%8C%96/" title="实验十一 数据分析与可视化"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://telegraph-image-byi.pages.dev/file/c6b5e84fc1dd42e8f8bbf.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实验十一 数据分析与可视化"/></a><div class="content"><a class="title" href="/2024/08/29/%E5%AE%9E%E9%AA%8C%E5%8D%81%E4%B8%80%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B8%8E%E5%8F%AF%E8%A7%86%E5%8C%96/" title="实验十一 数据分析与可视化">实验十一 数据分析与可视化</a><time datetime="2024-08-28T16:00:11.000Z" title="发表于 2024-08-29 00:00:11">2024-08-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/08/29/%E5%AE%9E%E9%AA%8C%E5%8D%81%20%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/" title="实验十 网络爬虫"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://telegraph-image-byi.pages.dev/file/c6b5e84fc1dd42e8f8bbf.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实验十 网络爬虫"/></a><div class="content"><a class="title" href="/2024/08/29/%E5%AE%9E%E9%AA%8C%E5%8D%81%20%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/" title="实验十 网络爬虫">实验十 网络爬虫</a><time datetime="2024-08-28T16:00:10.000Z" title="发表于 2024-08-29 00:00:10">2024-08-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/08/29/%E5%AE%9E%E9%AA%8C%E4%B9%9D%20GUI%E5%BC%80%E5%8F%91/" title="实验九 GUI开发"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://telegraph-image-byi.pages.dev/file/c6b5e84fc1dd42e8f8bbf.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实验九 GUI开发"/></a><div class="content"><a class="title" href="/2024/08/29/%E5%AE%9E%E9%AA%8C%E4%B9%9D%20GUI%E5%BC%80%E5%8F%91/" title="实验九 GUI开发">实验九 GUI开发</a><time datetime="2024-08-28T16:00:09.000Z" title="发表于 2024-08-29 00:00:09">2024-08-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/08/29/%E5%AE%9E%E9%AA%8C%E5%85%AB%20%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" title="实验八 异常处理"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://telegraph-image-byi.pages.dev/file/c6b5e84fc1dd42e8f8bbf.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实验八 异常处理"/></a><div class="content"><a class="title" href="/2024/08/29/%E5%AE%9E%E9%AA%8C%E5%85%AB%20%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" title="实验八 异常处理">实验八 异常处理</a><time datetime="2024-08-28T16:00:08.000Z" title="发表于 2024-08-29 00:00:08">2024-08-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/08/29/%E5%AE%9E%E9%AA%8C%E4%B8%83%20%E6%96%87%E4%BB%B6%E4%B8%8E%E6%96%87%E4%BB%B6%E5%A4%B9%E6%93%8D%E4%BD%9C/" title="实验七 文件与文件夹操作"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://telegraph-image-byi.pages.dev/file/c6b5e84fc1dd42e8f8bbf.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实验七 文件与文件夹操作"/></a><div class="content"><a class="title" href="/2024/08/29/%E5%AE%9E%E9%AA%8C%E4%B8%83%20%E6%96%87%E4%BB%B6%E4%B8%8E%E6%96%87%E4%BB%B6%E5%A4%B9%E6%93%8D%E4%BD%9C/" title="实验七 文件与文件夹操作">实验七 文件与文件夹操作</a><time datetime="2024-08-28T16:00:07.000Z" title="发表于 2024-08-29 00:00:07">2024-08-29</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2024 By <a class="footer-bar-link" href="/" title="大狸子" target="_blank">大狸子</a></div></div><div id="footer-type-tips"></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu" title="主题">主题</a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">20</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">3</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://blog.anheyu.com/" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://image.anheyu.com/" title="安知鱼图床"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.anheyu.com/favicon.ico" alt="安知鱼图床"/><span class="back-menu-item-text">安知鱼图床</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/link/"><span> 友链</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/C/" style="font-size: 0.88rem;">C++<sup>8</sup></a><a href="/tags/Python/" style="font-size: 0.88rem;">Python<sup>11</sup></a><a href="/tags/python/" style="font-size: 0.88rem;">python<sup>1</sup></a><a href="/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/" style="font-size: 0.88rem;">实验报告<sup>19</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="anzhiyufont anzhiyu-icon-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="8152976493" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.qq.com/n/ryqq/playlist/8802438608&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@17.8.5/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("08/06/2024 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2024 By 安知鱼 V1.6.12",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 大狸子 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><div class="js-pjax"><script>(() => {
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://biglizi-twikoo.hf.space',
+      region: '',
+      onCommentLoaded: () => {
+        anzhiyu.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(runFn,0)
+    else getScript('https://cdn.cbd.int/twikoo@1.6.25/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://biglizi-twikoo.hf.space',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const runFn = () => {
+    init();
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) anzhiyu.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else {
+      loadTwikoo()
+    }
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script><input type="hidden" name="page-type" id="page-type" value="post"></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getComment = () => {
+    const runTwikoo = () => {
+      twikoo.getRecentComments({
+        envId: 'https://biglizi-twikoo.hf.space',
+        region: '',
+        pageSize: 6,
+        includeReply: true
+      }).then(function (res) {
+        const twikooArray = res.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.id,
+            'date': new Date(e.created).toISOString()
+          }
+        })
+
+        saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), 10/(60*24))
+        generateHtml(twikooArray)
+      }).catch(function (err) {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+      })
+    }
+
+    if (typeof twikoo === 'object') {
+      runTwikoo()
+    } else {
+      getScript('https://cdn.cbd.int/twikoo@1.6.25/dist/twikoo.all.min.js').then(runTwikoo)
+    }
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'><div class='name'><span>${array[i].nick} </span></div></a>`
+        }
+        
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <time datetime="${array[i].date}">${anzhiyu.diffDate(array[i].date, true)}</time></div>
+        </div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('twikoo-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script>var visitorMail = "";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><script src="/js/anzhiyu/right_click_menu.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><script async src="https://at.alicdn.com/t/c/font_4666231_4tm5kw17mr9.js?spm=a313x.manage_type_myprojects.i1.10.6db03a810pLx4J&amp;file=font_4666231_4tm5kw17mr9.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","meta[property=\"og:type\"]","meta[property=\"og:site_name\"]","meta[property=\"og:description\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>
