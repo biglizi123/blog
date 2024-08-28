@@ -1,0 +1,585 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>实验六 继承与派生 | 大狸子</title><meta name="keywords" content="C++,实验报告"><meta name="author" content="大狸子"><meta name="copyright" content="大狸子"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="实验六 继承与派生"><meta name="application-name" content="实验六 继承与派生"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="实验六 继承与派生"><meta property="og:url" content="http://example.com/2024/08/28/%E5%AE%9E%E9%AA%8C%E5%85%AD%20%E7%BB%A7%E6%89%BF%E4%B8%8E%E6%B4%BE%E7%94%9F/index.html"><meta property="og:site_name" content="大狸子"><meta property="og:description" content="实验六 继承与派生一、实验目的1.掌握派生类的定义方法和实现，能正确访问继承层次中的各种类成员。   2.掌握继承机制中派生类的构造函数和析构函数的执行顺序。   二、实验内容1.请改写教材例题7-1的Rectangle类公有继承Point类。要求：（30分）   （1）为派生类增加构造函数、析构函"><meta property="og:locale" content="zh-CN"><meta property="og:image" content="https://telegraph-image-byi.pages.dev/file/0f6c8a6ec9309dc9530c8.png"><meta property="article:author" content="大狸子"><meta property="article:tag"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://telegraph-image-byi.pages.dev/file/0f6c8a6ec9309dc9530c8.png"><meta name="description" content="实验六 继承与派生一、实验目的1.掌握派生类的定义方法和实现，能正确访问继承层次中的各种类成员。   2.掌握继承机制中派生类的构造函数和析构函数的执行顺序。   二、实验内容1.请改写教材例题7-1的Rectangle类公有继承Point类。要求：（30分）   （1）为派生类增加构造函数、析构函"><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="http://example.com/2024/08/28/%E5%AE%9E%E9%AA%8C%E5%85%AD%20%E7%BB%A7%E6%89%BF%E4%B8%8E%E6%B4%BE%E7%94%9F/"><link rel="preconnect" href="//cdn.cbd.int"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: {"enable":true,"title":"与数百名博主无限进步","addFriendPlaceholder":"昵称（请勿包含博客等字样）：\n网站地址（要求博客地址，请勿提交个人主页）：\n头像图片url（请提供尽可能清晰的图片，我会上传到我自己的图床）：\n描述：\n站点截图（可选）：\n"},
+  peoplecanvas: undefined,
+  postHeadAiDescription: {"enable":true,"gptName":"AnZhiYu","mode":"local","switchBtn":false,"btnLink":"https://afdian.net/item/886a79d4db6711eda42a52540025c377","randomNum":3,"basicWordCount":1000,"key":"xxxx","Referer":"https://xx.xx/"},
+  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 不要走！再看看嘛！","backTitle":"♪(^∇^*)欢迎肥来！"},
+  LA51: undefined,
+  greetingBox: {"enable":true,"default":"晚上好👋","list":[{"greeting":"晚安😴","startTime":0,"endTime":5},{"greeting":"早上好鸭👋, 祝你一天好心情！","startTime":6,"endTime":9},{"greeting":"上午好👋, 状态很好，鼓励一下～","startTime":10,"endTime":10},{"greeting":"11点多啦, 在坚持一下就吃饭啦～","startTime":11,"endTime":11},{"greeting":"午安👋, 宝贝","startTime":12,"endTime":14},{"greeting":"🌈充实的一天辛苦啦！","startTime":14,"endTime":18},{"greeting":"19点喽, 奖励一顿丰盛的大餐吧🍔。","startTime":19,"endTime":19},{"greeting":"晚上好👋, 在属于自己的时间好好放松😌~","startTime":20,"endTime":24}]},
+  twikooEnvId: 'https://biglizi-twikoo.hf.space',
+  commentBarrageConfig:undefined,
+  root: '/',
+  preloader: {"source":3},
+  friends_vue_info: undefined,
+  navMusic: true,
+  mainTone: undefined,
+  authorStatus: {"skills":["🤖️ 数码科技爱好者","🔍 分享与热心帮助","🏠 智能家居小能手","🔨 设计开发一条龙","🤝 专修交互与设计","🏃 脚踏实地行动派","🧱 团队小组发动机","💢 壮汉人狠话不多"]},
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: 大狸子","link":"链接: ","source":"来源: 大狸子","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: '大狸子',
+  title: '实验六 继承与派生',
+  postAI: '',
+  pageFillDescription: '实验六 继承与派生, 一、实验目的, 二、实验内容, 三、实验步骤及结果, 题目1：, 题目2：, 题目3：, 题目4：, 题目5：, 四、实验小结实验六继承与派生一实验目的掌握派生类的定义方法和实现能正确访问继承层次中的各种类成员掌握继承机制中派生类的构造函数和析构函数的执行顺序二实验内容请改写教材例题的类公有继承类要求分为派生类增加构造函数析构函数及其它必要的函数派生类中有能够打印矩形信息的函数包括的信息有矩形点的位置坐标矩形长宽值及面积设计一个基类学生类采用公有继承的方式派生出一个研究生类要求分类中包含学号姓名性别专业要求在类中增加导师津贴研究方向两个类中都包含函数用于输出本类中的成员信息可以用如下代码测试所建立的类是否正确参数分别为学号姓名性别专业导师津贴研究方向定义一个基类它有公有成员函数函数内打印出类名及函数名有私有数据成员从它派生出类有公有成员函数函数内打印出类名及函数名私有数据成员在主函数中分别用及类的指针去调用观察运行结果要求分注意派生类的构造函数须写正确分析通过指针调用成员函数的运行结果定义一个类有数据成员从派生出类增加数据成员观察基类与派生类的构造函数和析构函数的调用顺序分组合与继承有什么共同点和差异通过组合生成的类与被组合的类之间的逻辑关系是什么继承呢请分析总结分三实验步骤及结果题目解题思路派生类构造函数注意要给基类的构造函数传参数面积通过函数调用私有数据成员进行计算最后回结果即可之后直接通过对象调用公有函数直接输出面积派生类通过公有函数去访问基类私有数据成员来输出矩形的信息程序代码基类类的定义公有函数成员默认构造函数构造函数析构函数私有数据成员派生类定义部分新增公有函数成员默认构造函数构造函数析构函数调用基类公有成员函数打印矩形信息矩形点的位置坐标矩形长宽值及面积计算面积新增私有数据成员程序名题目功能请改写教材例题的类公有继承类要求分为派生类增加构造函数析构函数及其它必要的函数派生类中有能够打印矩形信息的函数包括的信息有矩形点的位置坐标矩形长宽值及面积日期版本定义类的对象设置矩形的数据移动矩形位置输出矩形的特征参数用构造函数创建对象移动矩形位置打印矩形信息运行结果截图题目解题思路派生类构造函数需要给基类构造函数传参数在类外要用公有函数去调用基类的私有数据成员如要通过派生类对象访问基类中被隐藏的同名成员应使用基类名和作用域操作符来限定程序代码程序名题目功能设计一个基类学生类采用公有继承的方式派生出一个研究生类要求分类中包含学号姓名性别专业要求在类中增加导师津贴研究方向两个类中都包含函数用于输出本类中的成员信息日期版本类的定义私有数据成员外部接口构造函数析构函数输出类中的成员信息构造函数实现析构函数实现输出类中的成员信息公有派生类定义私有数据成员外部接口构造函数析构函数输出类中的成员信息输出类中的成员信息加作用域操作符来限定构造函数实现析构函数实现参数分别为学号姓名性别专业导师津贴研究方向运行结果截图题目解题思路若未特别限定则通过派生类对象使用的是派生类中的同名成员派生类构造函数需要给基类构造函数传参数程序代码程序名题目功能定义一个基类它有公有成员函数函数内打印出类名及函数名有私有数据成员从它派生出类有公有成员函数函数内打印出类名及函数名私有数据成员在主函数中分别用及类的指针去调用观察运行结果要求分注意派生类的构造函数须写正确分析通过指针调用成员函数的运行结果日期版本类定义私有数据成员外部接口构造函数析构函数构造函数实现析构函数实现公有继承派生类定义私有数据成员外部接口构造函数析构函数构造函数实现析构函数实现类对象指针定义用类对象指针去调用类对象指针定义用类对象指针去调用运行结果截图分析由于同名隐藏规则派生类指针调用访问的是派生类的由于派生类中没有是从基类中继承过来的在派生类中没有定义同名成员因此派生类指针调用访问的是基类的题目解题思路构造函数的执行顺序调用基类构造函数顺序按照它们被继承时声明的顺序从左向右对初始化列表中的成员进行初始化顺序按照它们在类中定义的顺序对象成员初始化时自动调用其所属类的构造函数由初始化列表提供参数执行派生类的构造函数体中的内容程序代码程序名题目功能定义一个类有数据成员从派生出类增加数据成员观察基类与派生类的构造函数和析构函数的调用顺序分日期版本类的定义私有数据成员外部接口构造函数析构函数构造函数实现析构函数实现公有继承派生类类的定义私有数据成员外部接口构造函数析构函数构造函数实现基类派生类内嵌基类对象运行结果截图分析构造函数先调用基类构造函数输出再调用基类构造函数为内嵌对象初始化输出最后调用派生类构造函数输出析构函数与构造函数正好相反题目问题组合与继承有什么共同点和差异通过组合生成的类与被组合的类之间的逻辑关系是什么继承呢请分析总结分回答共同点继承和组合的使用都可以减少重复代码同时若类是类的内嵌对象则类具有类的全部数据不同点组合是通过在其他类中定义对象来使用类中的方法和属性不能访问父类的任何接口而继承则是从父类中得到方法和属性即可以得到父类的全部接口并加以调用通过组合生成的类和被组合的类之间的逻辑关系组合生成的类具有被组合类的全部内容但是并不包括被组合类的全部接口就是通过被组合的类的对象只能访问组合类的成员函数但不能直接访问到被组合类的成员函数继承类与基类的逻辑关系即通过派生类的对象不但可以访问派生类的成员函数也能访问基类的成员函数派生类是可以完全继承基类的任何内容的包括全部接口四实验小结问题与解决办法问题派生类构造函数报错解决方法派生类构造函数需要给内嵌对象以及基类构造函数传递参数问题公有继承派生类成员函数访问基类私有数据成员报错解决方法派生类中的成员函数可以直接访问基类中的和成员但不能直接访问基类的成员需要通过访问基类的公有函数去访问私有数据成员问题派生类对象无法访问基类中被隐藏的同名成员解决方法通过派生类对象访问基类中被隐藏的同名成员应使用基类名和作用域操作符来限定心得体会本章内容感觉学起来轻松因为重点知识比较明确例如三种继承方式的不同构造函数和析构函数的调用顺序派生类成员的标识与访问等等只要掌握了相关重点本章题目写起来也比较轻松应手有时候自己找不到自己的错误即使这个错误是水平自己看了都要骂自己的题但是有时候就是找不到这时候可以通过找同学帮忙看一下自己哪里错了旁观者清有时候其他人一眼就看出你哪里犯了白痴错误另外单步调试也是一个非常好用的方法利用单步调试可以很好的帮助寻找错误区间课本上的题目真的要自己去单步调试一步一步运行这样才能很好地去理解重点知识例如构造函数调用顺序等这样可以更好的加深自己对知识的理解再配合上写题目就可以理解本章大部分内容实在不行就去问老师',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-08-28 16:35:04',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.3.0"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="https://telegraph-image-byi.pages.dev/file/48a1871ce967286b9d055.jpg"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><div class="back-home-button"><i class="anzhiyufont anzhiyu-icon-grip-vertical"></i><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://blog.anheyu.com/" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://image.anheyu.com/" title="安知鱼图床"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.anheyu.com/favicon.ico" alt="安知鱼图床"/><span class="back-menu-item-text">安知鱼图床</span></a></div></div></div></div><a id="site-name" href="/" accesskey="h"><div class="title">大狸子</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a><div id="he-plugin-simple"></div><script>var WIDGET = {
+  "CONFIG": {
+    "modules": "0124",
+    "background": "2",
+    "tmpColor": "FFFFFF",
+    "tmpSize": "16",
+    "cityColor": "FFFFFF",
+    "citySize": "16",
+    "aqiColor": "E8D87B",
+    "aqiSize": "16",
+    "weatherIconSize": "24",
+    "alertIconSize": "18",
+    "padding": "10px 10px 10px 10px",
+    "shadow": "0",
+    "language": "auto",
+    "borderRadius": "20",
+    "fixed": "true",
+    "vertical": "top",
+    "horizontal": "left",
+    "left": "20",
+    "top": "7.1",
+    "key": "df245676fb434a0691ead1c63341cd94"
+  }
+}
+</script><link rel="stylesheet" href="https://widget.qweather.net/simple/static/css/he-simple.css?v=1.4.0"/><script src="https://widget.qweather.net/simple/static/js/he-simple.js?v=1.4.0"></script></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/link/"><span> 友链</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button only-home" id="travellings_button" title="随机前往一个开往项目网站"><a class="site-page" onclick="anzhiyu.totraveling()" title="随机前往一个开往项目网站" href="javascript:void(0);" rel="external nofollow" data-pjax-state="external"><i class="anzhiyufont anzhiyu-icon-train"></i></a></div><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="https://telegraph-image-byi.pages.dev/file/de2ea8ecc7c0aa119dd18.png" target="_blank"><img class="post-qr-code-img" alt="微信" src="https://telegraph-image-byi.pages.dev/file/de2ea8ecc7c0aa119dd18.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://telegraph-image-byi.pages.dev/file/25f961a132cde06cf014a.png" target="_blank"><img class="post-qr-code-img" alt="支付宝" src="https://telegraph-image-byi.pages.dev/file/25f961a132cde06cf014a.png"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/C/" style="font-size: 1.05rem;">C++<sup>8</sup></a><a href="/tags/python/" style="font-size: 1.05rem;">python<sup>1</sup></a><a href="/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/" style="font-size: 1.05rem;">实验报告<sup>8</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/08/"><span class="card-archive-list-date">八月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">9</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/C/" itemprop="url">C++</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/C/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>C++</span></a><a class="article-meta__tags" href="/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>实验报告</span></a></span></div></div><h1 class="post-title" itemprop="name headline">实验六 继承与派生</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2024-08-28T08:35:04.000Z" title="发表于 2024-08-28 16:35:04">2024-08-28</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2024-08-28T08:35:04.000Z" title="更新于 2024-08-28 16:35:04">2024-08-28</time></span></div><div class="meta-secondline"><span class="post-meta-separator"></span><span class="post-meta-wordcount"><i class="anzhiyufont anzhiyu-icon-file-word post-meta-icon" title="文章字数"></i><span class="post-meta-label" title="文章字数">字数总计:</span><span class="word-count" title="文章字数">3.8k</span><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-clock post-meta-icon" title="阅读时长"></i><span class="post-meta-label" title="阅读时长">阅读时长:</span><span>14分钟</span></span><span class="post-meta-separator"></span><span class="post-meta-pv-cv" id="" data-flag-title="实验六 继承与派生"><i class="anzhiyufont anzhiyu-icon-fw-eye post-meta-icon"></i><span class="post-meta-label" title="阅读量">阅读量:</span><span id="busuanzi_value_page_pv"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></span><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为安阳"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>安阳</span><span class="post-meta-separator"></span><span class="post-meta-commentcount"><i class="anzhiyufont anzhiyu-icon-comments post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2024/08/28/%E5%AE%9E%E9%AA%8C%E5%85%AD%20%E7%BB%A7%E6%89%BF%E4%B8%8E%E6%B4%BE%E7%94%9F/#post-comment" tabindex="-1"><span id="twikoo-count"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></a></span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="https://telegraph-image-byi.pages.dev/file/0f6c8a6ec9309dc9530c8.png"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="http://example.com/2024/08/28/%E5%AE%9E%E9%AA%8C%E5%85%AD%20%E7%BB%A7%E6%89%BF%E4%B8%8E%E6%B4%BE%E7%94%9F/"><header><a class="post-meta-categories" href="/categories/C/" itemprop="url">C++</a><a href="/tags/C/" tabindex="-1" itemprop="url">C++</a><a href="/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/" tabindex="-1" itemprop="url">实验报告</a><h1 id="CrawlerTitle" itemprop="name headline">实验六 继承与派生</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">大狸子</span><time itemprop="dateCreated datePublished" datetime="2024-08-28T08:35:04.000Z" title="发表于 2024-08-28 16:35:04">2024-08-28</time><time itemprop="dateCreated datePublished" datetime="2024-08-28T08:35:04.000Z" title="更新于 2024-08-28 16:35:04">2024-08-28</time></header><h1 id="实验六-继承与派生"><a href="#实验六-继承与派生" class="headerlink" title="实验六 继承与派生"></a>实验六 继承与派生</h1><h2 id="一、实验目的"><a href="#一、实验目的" class="headerlink" title="一、实验目的"></a>一、实验目的</h2><p>1.掌握派生类的定义方法和实现，能正确访问继承层次中的各种类成员。  </p>
+<p>2.掌握继承机制中派生类的构造函数和析构函数的执行顺序。  </p>
+<h2 id="二、实验内容"><a href="#二、实验内容" class="headerlink" title="二、实验内容"></a>二、实验内容</h2><p>1.请改写教材例题7-1的Rectangle类公有继承Point类。要求：（30分）  </p>
+<p>（1）为派生类增加构造函数、析构函数，及其它必要的函数。  </p>
+<p>（2）派生类中有能够打印矩形信息的函数，包括的信息有矩形点的位置坐标、矩形长宽值及面积。  </p>
+<p>2.设计一个基类：学生类（Student），采用公有继承的方式派生出一个研究生类（PostGraduate），要求：（20分）  </p>
+<p>（1）Student类中包含：学号、姓名、性别、专业。  </p>
+<p>（2）要求在PostGraduate类中增加导师（tutor）、津贴（allowance）、研究方向（researchArea）。  </p>
+<p>（3）两个类中都包含：display()函数，用于输出本类中的成员信息。    </p>
+<p>可以用如下代码测试所建立的类是否正确。  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">int main()&#123;</span><br><span class="line">    Student s1(“20190001”, “Michael”, “Male”, “Computer Science”);</span><br><span class="line">    //参数分别为：学号，姓名，性别，专业</span><br><span class="line">    s1.display();</span><br><span class="line"></span><br><span class="line">    PostGraduate p1(……);//导师：“Liu”,津贴：“1000”,研究方向：“Deep learning”</span><br><span class="line"></span><br><span class="line">    p1.display();</span><br><span class="line">        return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3.定义一个基类BaseClass，它有公有成员函数func1()，func2(),函数内打印出类名及函数名，有私有数据成员int i。从它派生出类DerivedClass,有公有成员函数func1(),函数内打印出类名及函数名,私有数据成员int j,在主函数中分别用BaseClass及Derivedclass类的指针去调用func1(),func2，观察运行结果。要求：（20分）  </p>
+<p>（1）注意派生类的构造函数须写正确；  </p>
+<p>（2）分析通过指针调用成员函数的运行结果。  </p>
+<p>4.定义一个Document类，有数据成员name,从Document派生出Book类，增加数据成员pageCount。观察基类与派生类的构造函数和析构函数的调用顺序。（20分）  </p>
+<p>5.组合与继承有什么共同点和差异？通过组合生成的类与被组合的类之间的逻辑关系是什么？继承呢？请分析总结。（5分）  </p>
+<h2 id="三、实验步骤及结果"><a href="#三、实验步骤及结果" class="headerlink" title="三、实验步骤及结果"></a>三、实验步骤及结果</h2><h3 id="题目1："><a href="#题目1：" class="headerlink" title="题目1："></a><strong>题目1：</strong></h3><p><strong>解题思路：</strong>   </p>
+<p>1.派生类构造函数注意要给基类的构造函数传参数      </p>
+<p>2.面积通过函数调用私有数据成员进行计算最后return回结果即可，之后直接通过对象调用公有函数直接输出面积      </p>
+<p>3.派生类通过公有函数去访问基类私有数据成员来输出矩形的信息     </p>
+<p><strong>程序代码：</strong>         </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">//Point.h</span><br><span class="line">#ifndef _POINT_H</span><br><span class="line">#define _POINT_H</span><br><span class="line">class Point//基类Point类的定义</span><br><span class="line">&#123;</span><br><span class="line">    public://公有函数成员 </span><br><span class="line">    	Point()&#123;&#125;//默认构造函数 </span><br><span class="line">    	Point(float xx,float yy):x(xx),y(yy)&#123;&#125;//构造函数 </span><br><span class="line">    	~Point()&#123;&#125; //析构函数 </span><br><span class="line">        void initPoint(float x = 0, float y = 0)</span><br><span class="line">		&#123; </span><br><span class="line">            this-&gt;x = x; </span><br><span class="line">            this-&gt;y = y;</span><br><span class="line">        &#125;</span><br><span class="line">        void move(float offX, float offY)</span><br><span class="line">		&#123; </span><br><span class="line">            x += offX; </span><br><span class="line">            y += offY;</span><br><span class="line">        &#125;</span><br><span class="line">        float getX() const &#123; return x; &#125;</span><br><span class="line">        float getY() const &#123; return y; &#125;</span><br><span class="line">    private://私有数据成员  </span><br><span class="line">        float x, y;</span><br><span class="line">&#125;;</span><br><span class="line">#endif //_POINT_H</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">//Rectangle.h</span><br><span class="line">#ifndef _RECTANGLE_H</span><br><span class="line">#define _RECTANGLE_H</span><br><span class="line">#include &quot;Point.h&quot;</span><br><span class="line">class Rectangle: public Point//派生类定义部分</span><br><span class="line">&#123; </span><br><span class="line">public://新增公有函数成员</span><br><span class="line">	Rectangle()&#123;&#125;//默认构造函数 </span><br><span class="line">	Rectangle(float xx, float yy, float ww, float hh):Point(xx,yy),w(ww),h(hh)&#123;&#125;//构造函数 </span><br><span class="line">	~Rectangle()&#123;&#125;//析构函数 </span><br><span class="line">    void initRectangle(float x, float y, float w, float h)</span><br><span class="line">	 &#123;</span><br><span class="line">        initPoint(x, y);//调用基类公有成员函数</span><br><span class="line">        this-&gt;w = w;</span><br><span class="line">        this-&gt;h = h;</span><br><span class="line">    &#125;</span><br><span class="line">    void printInfo()//打印矩形信息（矩形点的位置坐标、矩形长宽值及面积。） </span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; &quot;The data of rect1(x,y,w,h): &quot; &lt;&lt; endl;</span><br><span class="line">		cout &lt;&lt; &quot;Point:&quot; &lt;&lt; &quot;(&quot; &lt;&lt; getX() &lt;&lt;&quot;,&quot;&lt;&lt; getY() &lt;&lt; &quot;)&quot; &lt;&lt;endl;</span><br><span class="line">		cout &lt;&lt; &quot;Width:&quot; &lt;&lt; getW() &lt;&lt; endl;</span><br><span class="line">		cout &lt;&lt; &quot;Height:&quot; &lt;&lt; getH() &lt;&lt; endl;</span><br><span class="line">		cout &lt;&lt; &quot;Area:&quot; &lt;&lt; getArea() &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">	float getArea()&#123;return getH()*getW();&#125;//计算面积 </span><br><span class="line">    float getH() const &#123; return h; &#125;</span><br><span class="line">    float getW() const &#123; return w; &#125;</span><br><span class="line">private://新增私有数据成员</span><br><span class="line">    float w, h;</span><br><span class="line">&#125;;</span><br><span class="line">#endif //_RECTANGLE_H</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">程序名：题目1.cpp</span><br><span class="line">功能：请改写教材例题7-1的Rectangle类公有继承Point类。要求：（30分） </span><br><span class="line">（1）为派生类增加构造函数、析构函数，及其它必要的函数。 </span><br><span class="line">（2）派生类中有能够打印矩形信息的函数，包括的信息有矩形点的位置坐标、矩形长宽值及面积。 </span><br><span class="line">日期：2021.11.26</span><br><span class="line">版本：1.0</span><br><span class="line">*/</span><br><span class="line">//main.cpp</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;cmath&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">#include &quot;Rectangle.h&quot;</span><br><span class="line">int main() </span><br><span class="line">&#123;</span><br><span class="line">    Rectangle rect;//定义Rectangle类的对象</span><br><span class="line">    rect.initRectangle(2, 3, 20, 10);//设置矩形的数据  </span><br><span class="line">    rect.move(3,2);//移动矩形位置</span><br><span class="line">    cout &lt;&lt; &quot;The data of rect(x,y,w,h): &quot; &lt;&lt; endl;</span><br><span class="line">    //输出矩形的特征参数 </span><br><span class="line">    cout &lt;&lt; rect.getX() &lt;&lt;&quot;, &quot;</span><br><span class="line">        &lt;&lt; rect.getY() &lt;&lt; &quot;, &quot;</span><br><span class="line">        &lt;&lt; rect.getW() &lt;&lt; &quot;, &quot;</span><br><span class="line">        &lt;&lt; rect.getH() &lt;&lt; endl;</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    Rectangle rect1(3,4,21,11);//用构造函数创建对象</span><br><span class="line">    rect1.move(2,2);//移动矩形位置 </span><br><span class="line">    rect1.printInfo();//打印矩形信息 </span><br><span class="line">    </span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>运行结果截图：</strong><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://dn-simplecloud.shiyanlou.com/courses/uid1760168-20211127-1638012775578" alt="图片描述"><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://dn-simplecloud.shiyanlou.com/courses/uid1760168-20211127-1638012786608" alt="图片描述"></p>
+<h3 id="题目2："><a href="#题目2：" class="headerlink" title="题目2："></a><strong>题目2：</strong></h3><p><strong>解题思路：</strong>      </p>
+<p>1.派生类构造函数需要给基类构造函数传参数      </p>
+<p>2.在类外要用公有函数去调用基类的私有数据成员      </p>
+<p>3.如要通过派生类对象访问基类中被隐藏的同名成员，应使用基类名和作用域操作符（::）来限定。       </p>
+<p><strong>程序代码：</strong>          </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">程序名：题目2.cpp</span><br><span class="line">功能：设计一个基类：学生类（Student），采用公有继承的方式派生出一个研究生类（PostGraduate），要求：（20分）</span><br><span class="line">（1）Student类中包含：学号、姓名、性别、专业。</span><br><span class="line">（2）要求在PostGraduate类中增加导师（tutor）、津贴（allowance）、研究方向（researchArea）。 </span><br><span class="line">（3）两个类中都包含：display()函数，用于输出本类中的成员信息。</span><br><span class="line">日期：2021.11.26</span><br><span class="line">版本：1.0</span><br><span class="line">*/</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">class Student//Student类的定义 </span><br><span class="line">&#123;</span><br><span class="line">private://私有数据成员 </span><br><span class="line">	string id;</span><br><span class="line">	string name;</span><br><span class="line">	string gender;</span><br><span class="line">	string major;</span><br><span class="line">public://外部接口</span><br><span class="line">	Student(string ID, string NAME, string GENDER, string MAJOR);//构造函数</span><br><span class="line">	~Student();//析构函数 </span><br><span class="line">	virtual void display()const; //输出Student类中的成员信息 </span><br><span class="line">&#125;;</span><br><span class="line">Student::Student(string ID, string NAME, string GENDER, string MAJOR) :id(ID), name(NAME), gender(GENDER), major(MAJOR) &#123;&#125;//构造函数实现 </span><br><span class="line">Student::~Student() &#123;&#125;//析构函数实现 </span><br><span class="line">void Student::display() const//输出Student类中的成员信息 </span><br><span class="line">&#123;</span><br><span class="line">	cout &lt;&lt; &quot;Id:&quot; &lt;&lt; id &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; &quot;Name:&quot; &lt;&lt; name &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; &quot;Gender:&quot; &lt;&lt; gender &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; &quot;Major:&quot; &lt;&lt; major &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line">class PostGraduate :public Student//公有派生类PostGraduate定义 </span><br><span class="line">&#123;</span><br><span class="line">private://私有数据成员</span><br><span class="line">	string tutor;</span><br><span class="line">	string allowance;</span><br><span class="line">	string researchArea;</span><br><span class="line">public://外部接口</span><br><span class="line">	PostGraduate(string ID, string NAME, string GENDER, string MAJOR, string TUTOR, string ALLOWANCE, string RESEARCHAREA);//构造函数</span><br><span class="line">	~PostGraduate();//析构函数 </span><br><span class="line">	virtual void display()const; //输出PostGraduate类中的成员信息 </span><br><span class="line">&#125;;</span><br><span class="line">void PostGraduate::display() const//输出PostGraduate类中的成员信息 </span><br><span class="line">&#123;</span><br><span class="line">	Student::display();//加作用域操作符（::）来限定。</span><br><span class="line">	cout &lt;&lt; &quot;Tutor:&quot; &lt;&lt; tutor &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; &quot;Allowance:&quot; &lt;&lt; allowance &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; &quot;ResearchArea:&quot; &lt;&lt; researchArea &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line">PostGraduate::PostGraduate(string ID, string NAME, string GENDER, string MAJOR, string TUTOR, string ALLOWANCE, string RESEARCHAREA) :</span><br><span class="line">	Student(ID, NAME, GENDER, MAJOR), tutor(TUTOR), allowance(ALLOWANCE), researchArea(RESEARCHAREA) &#123;&#125;//构造函数实现 </span><br><span class="line">PostGraduate::~PostGraduate() &#123;&#125;//析构函数实现</span><br><span class="line">int main() &#123;</span><br><span class="line">	Student s1(&quot;20190001&quot;, &quot;Michael&quot;, &quot;Male&quot;, &quot;Computer Science&quot;);//参数分别为：学号，姓名，性别，专业</span><br><span class="line">	s1.display();</span><br><span class="line">	cout &lt;&lt; &quot;***********************************************************&quot; &lt;&lt; endl;</span><br><span class="line">	PostGraduate p1(&quot;20210001&quot;, &quot;Jane&quot;, &quot;Female&quot;, &quot;Software Engineering&quot;, &quot;liu&quot;, &quot;1000&quot;, &quot;Deep learning&quot;);//导师：“Liu”,津贴：“1000”,研究方向：“Deep learning”</span><br><span class="line">	p1.display();</span><br><span class="line">	system(&quot;pause&quot;);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>运行结果截图：</strong><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://dn-simplecloud.shiyanlou.com/courses/uid1760168-20211127-1638013023537" alt="图片描述"></p>
+<h3 id="题目3："><a href="#题目3：" class="headerlink" title="题目3："></a><strong>题目3：</strong></h3><p><strong>解题思路：</strong>       </p>
+<p>1.若未特别限定，则通过派生类对象使用的是派生类中的同名成员。            </p>
+<p>2.派生类构造函数需要给基类构造函数传参数       </p>
+<p><strong>程序代码：</strong>          </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">程序名：题目3.cpp</span><br><span class="line">功能：定义一个基类BaseClass，它有公有成员函数func1()，func2(),函数内打印出类名及函数名，有私有数据成员int i。</span><br><span class="line">从它派生出类DerivedClass,有公有成员函数func1(),函数内打印出类名及函数名,私有数据成员int j</span><br><span class="line">在主函数中分别用BaseClass及Derivedclass类的指针去调用func1(),func2，观察运行结果。要求：（20分）</span><br><span class="line">（1）注意派生类的构造函数须写正确；</span><br><span class="line">（2）分析通过指针调用成员函数的运行结果。</span><br><span class="line">日期：2021.11.27</span><br><span class="line">版本：1.0</span><br><span class="line">*/</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">class BaseClass//BaseClass类定义 </span><br><span class="line">&#123;</span><br><span class="line">private://私有数据成员</span><br><span class="line">	int i;</span><br><span class="line">public://外部接口</span><br><span class="line">	BaseClass(int ii);//构造函数 </span><br><span class="line">	~BaseClass();//析构函数 </span><br><span class="line">	void func1(); </span><br><span class="line">	void func2(); </span><br><span class="line">&#125;;</span><br><span class="line">BaseClass::BaseClass(int ii)&#123;&#125;;//构造函数实现</span><br><span class="line">BaseClass::~BaseClass()&#123;&#125;//析构函数实现 </span><br><span class="line">void BaseClass::func1()</span><br><span class="line">&#123;	</span><br><span class="line">	cout &lt;&lt; &quot;BaseClass:func1()&quot; &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line">void BaseClass::func2()</span><br><span class="line">&#123;</span><br><span class="line">	cout &lt;&lt; &quot;BaseClass:func2()&quot; &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line">class DerivedClass:public BaseClass//公有继承派生类DerivedClass定义 </span><br><span class="line">&#123;</span><br><span class="line">private://私有数据成员 </span><br><span class="line">	int j;</span><br><span class="line">public://外部接口 </span><br><span class="line">	DerivedClass(int ii,int jj);//构造函数</span><br><span class="line">	~DerivedClass();//析构函数 </span><br><span class="line">	void func1();</span><br><span class="line">&#125;;</span><br><span class="line">DerivedClass::DerivedClass(int ii,int jj):BaseClass(ii),j(jj)&#123;&#125;//构造函数实现</span><br><span class="line">DerivedClass::~DerivedClass()&#123;&#125;//析构函数实现</span><br><span class="line">void DerivedClass::func1()</span><br><span class="line">&#123;</span><br><span class="line">	cout &lt;&lt; &quot;DerivedClass:func1()&quot; &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;	</span><br><span class="line">	//BaseClass类对象指针定义 </span><br><span class="line">	BaseClass p1(1);</span><br><span class="line">	BaseClass *ptr1;</span><br><span class="line">	ptr1=&amp;p1;</span><br><span class="line">	//用BaseClass类对象指针去调用func1，func2 </span><br><span class="line">	ptr1-&gt;func1();</span><br><span class="line">	ptr1-&gt;func2();</span><br><span class="line">	cout &lt;&lt; &quot;************************&quot; &lt;&lt; endl;</span><br><span class="line">	//DerivedClass类对象指针定义 </span><br><span class="line">	DerivedClass p2(1,2);</span><br><span class="line">	DerivedClass *ptr2;</span><br><span class="line">	ptr2=&amp;p2;</span><br><span class="line">	//用DerivedClass类对象指针去调用func1，func2 </span><br><span class="line">	ptr2-&gt;func1();</span><br><span class="line">	ptr2-&gt;func2();</span><br><span class="line">	system(&quot;pause&quot;);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>运行结果截图：</strong><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://dn-simplecloud.shiyanlou.com/courses/uid1760168-20211127-1638013462887" alt="图片描述"></p>
+<p><strong>分析：</strong>       </p>
+<p>1.由于同名隐藏规则，派生类指针调用func1访问的是派生类的func1      </p>
+<p>2.由于派生类中没有func2，是从基类中继承过来的，在派生类中没有定义同名成员，因此派生类指针调用func2访问的是基类的func2       </p>
+<h3 id="题目4："><a href="#题目4：" class="headerlink" title="题目4："></a><strong>题目4：</strong></h3><p><strong>解题思路：</strong>              </p>
+<p>构造函数的执行顺序：       </p>
+<p>1.调用基类构造函数。【顺序按照它们被继承时声明的顺序（从左向右）。】             </p>
+<p>2.对初始化列表中的成员进行初始化。      </p>
+<p>（1）顺序按照它们在类中定义的顺序。       </p>
+<p>（2）对象成员初始化时自动调用其所属类的构造函数。由初始化列表提供参数。      </p>
+<p>3.执行派生类的构造函数体中的内容。        </p>
+<p><strong>程序代码：</strong>             </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">程序名：题目4.cpp</span><br><span class="line">功能：定义一个Document类，有数据成员name,从Document派生出Book类，增加数据成员pageCount。 </span><br><span class="line">观察基类与派生类的构造函数和析构函数的调用顺序。（20分） </span><br><span class="line">日期：2021.11.27</span><br><span class="line">版本：1.0</span><br><span class="line">*/</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">class Document//Document类的定义 </span><br><span class="line">&#123;</span><br><span class="line">private://私有数据成员</span><br><span class="line">	string name; </span><br><span class="line">public://外部接口</span><br><span class="line">	Document(string Name);//构造函数</span><br><span class="line">	~Document();//析构函数 </span><br><span class="line">&#125;;</span><br><span class="line">Document::Document(string Name):name(Name)//构造函数实现 </span><br><span class="line">&#123;</span><br><span class="line">	cout &lt;&lt; &quot;Calling the constructor of Document. &quot; &lt;&lt; name &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line">Document::~Document()//析构函数实现 </span><br><span class="line">&#123;</span><br><span class="line">	cout &lt;&lt; &quot;Calling the destructor of Document. &quot; &lt;&lt;  name &lt;&lt; endl;	</span><br><span class="line">&#125;</span><br><span class="line">class Book:public Document//公有继承派生类Book类的定义 </span><br><span class="line">&#123;</span><br><span class="line">private://私有数据成员</span><br><span class="line">	int pageCount;</span><br><span class="line">	Document d1;</span><br><span class="line">public://外部接口</span><br><span class="line">	Book(string Name1,int PageCount,string Name2);//构造函数</span><br><span class="line">	~Book();//析构函数 </span><br><span class="line">&#125;;</span><br><span class="line">Book::Book(string Name1,int PageCount,string Name2):Document(Name1),pageCount(PageCount),d1(Name2)//构造函数实现 </span><br><span class="line">&#123;</span><br><span class="line">	cout &lt;&lt; &quot;Calling the constructor of Book. &quot; &lt;&lt; pageCount &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line">Book::~Book()</span><br><span class="line">&#123;</span><br><span class="line">	cout &lt;&lt; &quot;Calling the destructor of Book. &quot; &lt;&lt; pageCount &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	Book(&quot;ZhangSan&quot;,666,&quot;LiSi&quot;);//基类ZhangSan,派生类666,内嵌基类对象LiSi </span><br><span class="line">	system(&quot;pause&quot;);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>运行结果截图：</strong><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://dn-simplecloud.shiyanlou.com/courses/uid1760168-20211127-1638013976585" alt="图片描述"></p>
+<p><strong>分析：</strong>              </p>
+<p>构造函数：         </p>
+<p>1.先调用基类构造函数输出ZhangSan             </p>
+<p>2.再调用基类构造函数为内嵌对象初始化输出LiSi             </p>
+<p>3.最后调用派生类构造函数输出666            </p>
+<p>析构函数：与构造函数正好相反                 </p>
+<h3 id="题目5："><a href="#题目5：" class="headerlink" title="题目5："></a><strong>题目5：</strong></h3><p><strong>问题：</strong>组合与继承有什么共同点和差异？通过组合生成的类与被组合的类之间的逻辑关系是什么？继承呢？请分析总结。（5分）      </p>
+<p><strong>回答：</strong>      </p>
+<p>（1）共同点：继承和组合的使用都可以减少重复代码，同时若类B是类A的内嵌对象，则B类具有A类的全部数据。        </p>
+<p>不同点：组合是通过在其他类中定义对象来使用类中的方法和属性，不能访问父类的任何接口。而继承则是从父类中得到方法和属性，即可以得到父类的全部接口，并加以调用。        </p>
+<p>（2）通过组合生成的类和被组合的类之间的逻辑关系：组合生成的类具有被组合类的全部内容，但是并不包括被组合类的全部接口，就是通过被组合的类的对象只能访问组合类的成员函数，但不能直接访问到被组合类的成员函数。         </p>
+<p>（3）继承类与基类的逻辑关系：即通过派生类的对象不但可以访问派生类的成员函数，也能访问基类的成员函数，派生类是可以完全继承基类的任何内容的包括全部接口。             </p>
+<h2 id="四、实验小结"><a href="#四、实验小结" class="headerlink" title="四、实验小结"></a>四、实验小结</h2><p><strong>问题与解决办法：</strong>         </p>
+<p>（1）问题：派生类构造函数报错             </p>
+<p>解决方法：派生类构造函数需要给内嵌对象以及基类构造函数传递参数。          </p>
+<p>（2）问题：公有继承派生类成员函数访问基类私有数据成员报错           </p>
+<p>解决方法：派生类中的成员函数可以直接访问基类中的public和protected成员，但不能直接访问基类的private成员；需要通过访问基类的公有函数去访问私有数据成员                     </p>
+<p>（3）问题：派生类对象无法访问基类中被隐藏的同名成员          </p>
+<p>解决方法：通过派生类对象访问基类中被隐藏的同名成员，应使用基类名和作用域操作符（::）来限定。                </p>
+<p><strong>心得体会：</strong>         </p>
+<p> 1.本章内容感觉学起来轻松，因为重点知识比较明确，例如三种继承方式的不同，构造函数和析构函数的调用顺序，派生类成员的标识与访问等等，只要掌握了相关重点，本章题目写起来也比较轻松应手。              </p>
+<p>2.有时候自己找不到自己的错误，即使这个错误是easy水平自己看了都要骂自己的题，但是有时候就是找不到，这时候可以通过找同学帮忙看一下自己哪里错了，旁观者清有时候其他人一眼就看出你哪里犯了白痴错误。另外单步调试也是一个非常好用的方法，利用单步调试可以很好的帮助寻找错误区间。                </p>
+<p>3.课本上的题目真的要自己去单步调试一步一步运行，这样才能很好地去理解重点知识，例如构造函数调用顺序等，这样可以更好的加深自己对知识的理解，再配合上写题目就可以理解本章大部分内容，实在不行就去问老师。</p>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://telegraph-image-byi.pages.dev/file/48a1871ce967286b9d055.jpg" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://telegraph-image-byi.pages.dev/file/48a1871ce967286b9d055.jpg" title="头像" alt="头像"></a><div class="post-copyright__author_name">大狸子</div><div class="post-copyright__author_desc">待我强大，吃遍天下</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="http://example.com/2024/08/28/%E5%AE%9E%E9%AA%8C%E5%85%AD%20%E7%BB%A7%E6%89%BF%E4%B8%8E%E6%B4%BE%E7%94%9F/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('http://example.com/2024/08/28/%E5%AE%9E%E9%AA%8C%E5%85%AD%20%E7%BB%A7%E6%89%BF%E4%B8%8E%E6%B4%BE%E7%94%9F/')">实验六 继承与派生</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"><div class="post-reward" onclick="anzhiyu.addRewardMask()"><div class="reward-button button--animated" title="赞赏作者"><i class="anzhiyufont anzhiyu-icon-hand-heart-fill"></i>打赏作者</div><div class="reward-main"><div class="reward-all"><span class="reward-title">感谢你赐予我前进的力量</span><ul class="reward-group"><li class="reward-item"><a href="https://telegraph-image-byi.pages.dev/file/de2ea8ecc7c0aa119dd18.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://telegraph-image-byi.pages.dev/file/de2ea8ecc7c0aa119dd18.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://telegraph-image-byi.pages.dev/file/25f961a132cde06cf014a.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://telegraph-image-byi.pages.dev/file/25f961a132cde06cf014a.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul><a class="reward-main-btn" href="/about/#about-reward" target="_blank"><div class="reward-text">赞赏者名单</div><div class="reward-dec">因为你们的支持让我意识到写文章的价值🙏</div></a></div></div></div><div id="quit-box" onclick="anzhiyu.removeRewardMask()" style="display: none"></div></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="http://example.com/2024/08/28/%E5%AE%9E%E9%AA%8C%E5%85%AD%20%E7%BB%A7%E6%89%BF%E4%B8%8E%E6%B4%BE%E7%94%9F/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=实验六 继承与派生&amp;url=http://example.com/2024/08/28/%E5%AE%9E%E9%AA%8C%E5%85%AD%20%E7%BB%A7%E6%89%BF%E4%B8%8E%E6%B4%BE%E7%94%9F/&amp;pic=https://telegraph-image-byi.pages.dev/file/0f6c8a6ec9309dc9530c8.png" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">大狸子</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/C/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>C++<span class="tagsPageCount">8</span></a><a class="post-meta__box__tags" href="/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>实验报告<span class="tagsPageCount">8</span></a></div></div></div><div class="post_share"><div class="social-share" data-image="https://telegraph-image-byi.pages.dev/file/0f6c8a6ec9309dc9530c8.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/08/28/%E5%AE%9E%E9%AA%8C%E4%BA%94%20%E6%95%B0%E7%BB%84%E3%80%81%E6%8C%87%E9%92%88%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://telegraph-image-byi.pages.dev/file/0f6c8a6ec9309dc9530c8.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">实验五 数组、指针与字符串</div></div></a></div><div class="next-post pull-right"><a href="/2024/08/28/%E5%AE%9E%E9%AA%8C%E4%B8%83%20%E5%A4%9A%E6%80%81%E6%80%A7/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://telegraph-image-byi.pages.dev/file/0f6c8a6ec9309dc9530c8.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">实验七 多态性</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="anzhiyufont anzhiyu-icon-thumbs-up fa-fw" style="font-size: 1.5rem; margin-right: 4px"></i><span>喜欢这篇文章的人也看了</span></div><div class="relatedPosts-list"><div><a href="/2024/08/28/%E5%AE%9E%E9%AA%8C%E4%B8%80%20C++%E7%AE%80%E5%8D%95%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" title="实验一 C++简单程序设计"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://telegraph-image-byi.pages.dev/file/0f6c8a6ec9309dc9530c8.png" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2024-08-28</div><div class="title">实验一 C++简单程序设计</div></div></a></div><div><a href="/2024/08/28/%E5%AE%9E%E9%AA%8C%E4%B8%83%20%E5%A4%9A%E6%80%81%E6%80%A7/" title="实验七 多态性"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://telegraph-image-byi.pages.dev/file/0f6c8a6ec9309dc9530c8.png" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2024-08-28</div><div class="title">实验七 多态性</div></div></a></div><div><a href="/2024/08/28/%E5%AE%9E%E9%AA%8C%E4%B8%89%20%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1/" title="实验三 类和对象"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://telegraph-image-byi.pages.dev/file/0f6c8a6ec9309dc9530c8.png" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2024-08-28</div><div class="title">实验三 类和对象</div></div></a></div><div><a href="/2024/08/28/%E5%AE%9E%E9%AA%8C%E4%BA%8C%20%E5%87%BD%E6%95%B0%E7%9A%84%E5%BA%94%E7%94%A8/" title="实验二 函数的应用"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://telegraph-image-byi.pages.dev/file/0f6c8a6ec9309dc9530c8.png" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2024-08-28</div><div class="title">实验二 函数的应用</div></div></a></div><div><a href="/2024/08/28/%E5%AE%9E%E9%AA%8C%E4%BA%94%20%E6%95%B0%E7%BB%84%E3%80%81%E6%8C%87%E9%92%88%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2/" title="实验五 数组、指针与字符串"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://telegraph-image-byi.pages.dev/file/0f6c8a6ec9309dc9530c8.png" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2024-08-28</div><div class="title">实验五 数组、指针与字符串</div></div></a></div><div><a href="/2024/08/28/%E5%AE%9E%E9%AA%8C%E5%85%AB%20%E6%B5%81%E7%B1%BB%E5%BA%93%E4%B8%8E%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/" title="实验八 流类库与输入输出"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://telegraph-image-byi.pages.dev/file/0f6c8a6ec9309dc9530c8.png" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2024-08-28</div><div class="title">实验八 流类库与输入输出</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="anzhiyufont anzhiyu-icon-comments"></i><span> 评论</span></div><div class="comment-randomInfo"><a onclick="anzhiyu.addRandomCommentInfo()" href="javascript:void(0)">匿名评论</a><a href="/privacy" style="margin-left: 4px">隐私政策</a></div><div class="comment-tips" id="comment-tips"><span>✅ 你无需删除空行，直接评论以获取最佳展示效果</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div><div class="comment-barrage"></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info__sayhi" id="author-info__sayhi" onclick="anzhiyu.changeSayHelloText()"></div><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://telegraph-image-byi.pages.dev/file/48a1871ce967286b9d055.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-status"><img class="g-status" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2023/08/24/64e6ce9c507bb.png" alt="status"/></div></div><div class="author-info__description"><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">这有关于<b style="color:#fff">产品、设计、开发</b>相关的问题和看法，还有<b style="color:#fff">文章翻译</b>和<b style="color:#fff">分享</b>。</div><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">相信你可以在这里找到对你有用的<b style="color:#fff">知识</b>和<b style="color:#fff">教程</b>。</div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/"><h1 class="author-info__name">大狸子</h1><div class="author-info__desc">待我强大，吃遍天下</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/biglizi123" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="social-icon faa-parent animated-hover" href="https://blog.csdn.net/qq_26967721?spm=1000.2115.3001.5343" target="_blank" title="csdn"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-csdn2"></use></svg></a></div></div></div></div><div class="card-widget anzhiyu-right-widget" id="card-wechat" onclick="null"><div id="flip-wrapper"><div id="flip-content"><div class="face" style="background: url(https://bu.dusays.com/2023/01/13/63c02edf44033.png) center center / 100% no-repeat"></div><div class="back face" style="background: url(https://bu.dusays.com/2023/05/13/645fa415e8694.png) center center / 100% no-repeat"></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%85%AD-%E7%BB%A7%E6%89%BF%E4%B8%8E%E6%B4%BE%E7%94%9F"><span class="toc-number">1.</span> <span class="toc-text">实验六 继承与派生</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84"><span class="toc-number">1.1.</span> <span class="toc-text">一、实验目的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9"><span class="toc-number">1.2.</span> <span class="toc-text">二、实验内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4%E5%8F%8A%E7%BB%93%E6%9E%9C"><span class="toc-number">1.3.</span> <span class="toc-text">三、实验步骤及结果</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE1%EF%BC%9A"><span class="toc-number">1.3.1.</span> <span class="toc-text">题目1：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE2%EF%BC%9A"><span class="toc-number">1.3.2.</span> <span class="toc-text">题目2：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE3%EF%BC%9A"><span class="toc-number">1.3.3.</span> <span class="toc-text">题目3：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE4%EF%BC%9A"><span class="toc-number">1.3.4.</span> <span class="toc-text">题目4：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE5%EF%BC%9A"><span class="toc-number">1.3.5.</span> <span class="toc-text">题目5：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%AE%9E%E9%AA%8C%E5%B0%8F%E7%BB%93"><span class="toc-number">1.4.</span> <span class="toc-text">四、实验小结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/08/28/%E5%AE%9E%E9%AA%8C%E5%85%AB%20%E6%B5%81%E7%B1%BB%E5%BA%93%E4%B8%8E%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/" title="实验八 流类库与输入输出"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://telegraph-image-byi.pages.dev/file/0f6c8a6ec9309dc9530c8.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实验八 流类库与输入输出"/></a><div class="content"><a class="title" href="/2024/08/28/%E5%AE%9E%E9%AA%8C%E5%85%AB%20%E6%B5%81%E7%B1%BB%E5%BA%93%E4%B8%8E%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/" title="实验八 流类库与输入输出">实验八 流类库与输入输出</a><time datetime="2024-08-28T08:45:04.000Z" title="发表于 2024-08-28 16:45:04">2024-08-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/08/28/%E5%AE%9E%E9%AA%8C%E4%B8%83%20%E5%A4%9A%E6%80%81%E6%80%A7/" title="实验七 多态性"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://telegraph-image-byi.pages.dev/file/0f6c8a6ec9309dc9530c8.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实验七 多态性"/></a><div class="content"><a class="title" href="/2024/08/28/%E5%AE%9E%E9%AA%8C%E4%B8%83%20%E5%A4%9A%E6%80%81%E6%80%A7/" title="实验七 多态性">实验七 多态性</a><time datetime="2024-08-28T08:43:04.000Z" title="发表于 2024-08-28 16:43:04">2024-08-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/08/28/%E5%AE%9E%E9%AA%8C%E5%85%AD%20%E7%BB%A7%E6%89%BF%E4%B8%8E%E6%B4%BE%E7%94%9F/" title="实验六 继承与派生"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://telegraph-image-byi.pages.dev/file/0f6c8a6ec9309dc9530c8.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实验六 继承与派生"/></a><div class="content"><a class="title" href="/2024/08/28/%E5%AE%9E%E9%AA%8C%E5%85%AD%20%E7%BB%A7%E6%89%BF%E4%B8%8E%E6%B4%BE%E7%94%9F/" title="实验六 继承与派生">实验六 继承与派生</a><time datetime="2024-08-28T08:35:04.000Z" title="发表于 2024-08-28 16:35:04">2024-08-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/08/28/%E5%AE%9E%E9%AA%8C%E4%BA%94%20%E6%95%B0%E7%BB%84%E3%80%81%E6%8C%87%E9%92%88%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2/" title="实验五 数组、指针与字符串"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://telegraph-image-byi.pages.dev/file/0f6c8a6ec9309dc9530c8.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实验五 数组、指针与字符串"/></a><div class="content"><a class="title" href="/2024/08/28/%E5%AE%9E%E9%AA%8C%E4%BA%94%20%E6%95%B0%E7%BB%84%E3%80%81%E6%8C%87%E9%92%88%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2/" title="实验五 数组、指针与字符串">实验五 数组、指针与字符串</a><time datetime="2024-08-28T08:00:04.000Z" title="发表于 2024-08-28 16:00:04">2024-08-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/08/28/%E5%AE%9E%E9%AA%8C%E5%9B%9B%20%E6%95%B0%E6%8D%AE%E7%9A%84%E5%85%B1%E4%BA%AB%E4%B8%8E%E4%BF%9D%E6%8A%A4/" title="实验四 数据的共享与保护"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://telegraph-image-byi.pages.dev/file/0f6c8a6ec9309dc9530c8.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实验四 数据的共享与保护"/></a><div class="content"><a class="title" href="/2024/08/28/%E5%AE%9E%E9%AA%8C%E5%9B%9B%20%E6%95%B0%E6%8D%AE%E7%9A%84%E5%85%B1%E4%BA%AB%E4%B8%8E%E4%BF%9D%E6%8A%A4/" title="实验四 数据的共享与保护">实验四 数据的共享与保护</a><time datetime="2024-08-28T07:00:03.000Z" title="发表于 2024-08-28 15:00:03">2024-08-28</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2024 By <a class="footer-bar-link" href="/" title="大狸子" target="_blank">大狸子</a></div></div><div id="footer-type-tips"></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu" title="主题">主题</a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">9</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">2</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://blog.anheyu.com/" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://image.anheyu.com/" title="安知鱼图床"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.anheyu.com/favicon.ico" alt="安知鱼图床"/><span class="back-menu-item-text">安知鱼图床</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/link/"><span> 友链</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/C/" style="font-size: 0.88rem;">C++<sup>8</sup></a><a href="/tags/python/" style="font-size: 0.88rem;">python<sup>1</sup></a><a href="/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/" style="font-size: 0.88rem;">实验报告<sup>8</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="anzhiyufont anzhiyu-icon-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="8152976493" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.qq.com/n/ryqq/playlist/8802438608&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@17.8.5/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("08/06/2024 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2024 By 安知鱼 V1.6.12",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 大狸子 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><div class="js-pjax"><script>(() => {
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://biglizi-twikoo.hf.space',
+      region: '',
+      onCommentLoaded: () => {
+        anzhiyu.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(runFn,0)
+    else getScript('https://cdn.cbd.int/twikoo@1.6.25/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://biglizi-twikoo.hf.space',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const runFn = () => {
+    init();
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) anzhiyu.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else {
+      loadTwikoo()
+    }
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script><input type="hidden" name="page-type" id="page-type" value="post"></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getComment = () => {
+    const runTwikoo = () => {
+      twikoo.getRecentComments({
+        envId: 'https://biglizi-twikoo.hf.space',
+        region: '',
+        pageSize: 6,
+        includeReply: true
+      }).then(function (res) {
+        const twikooArray = res.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.id,
+            'date': new Date(e.created).toISOString()
+          }
+        })
+
+        saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), 10/(60*24))
+        generateHtml(twikooArray)
+      }).catch(function (err) {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+      })
+    }
+
+    if (typeof twikoo === 'object') {
+      runTwikoo()
+    } else {
+      getScript('https://cdn.cbd.int/twikoo@1.6.25/dist/twikoo.all.min.js').then(runTwikoo)
+    }
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'><div class='name'><span>${array[i].nick} </span></div></a>`
+        }
+        
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <time datetime="${array[i].date}">${anzhiyu.diffDate(array[i].date, true)}</time></div>
+        </div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('twikoo-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script>var visitorMail = "";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><script src="/js/anzhiyu/right_click_menu.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><script async src="https://at.alicdn.com/t/c/font_4666231_4tm5kw17mr9.js?spm=a313x.manage_type_myprojects.i1.10.6db03a810pLx4J&amp;file=font_4666231_4tm5kw17mr9.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","meta[property=\"og:type\"]","meta[property=\"og:site_name\"]","meta[property=\"og:description\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>
